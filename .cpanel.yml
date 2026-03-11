@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH="/home/cp2347621p40/repositories/funda-online"
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /usr/bin/rsync -av --delete --exclude='.git' ./ "$DEPLOYPATH"
+    - /bin/echo "Deployment completed to $DEPLOYPATH"
