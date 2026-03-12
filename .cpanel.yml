@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH="/home/CHANGE_ME/app/"
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /usr/bin/rsync -av --delete --exclude='.git' ./ "$DEPLOYPATH"
+    - /bin/echo "Deployment completed to $DEPLOYPATH"
