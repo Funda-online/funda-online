@@ -44,9 +44,9 @@ export default function Hero() {
         {/* Badge d'Impact Social [cite: 19, 21] */}
         <div 
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary *border border-primary/20 text-sm font-medium"
         >
-          <Sparkles size={16} />
+          {/* <Sparkles size={16} /> */}
           <span>Initiative d'impact social à Lubumbashi</span> 
         </div>
 
@@ -60,23 +60,23 @@ export default function Hero() {
 
         {/* Description [cite: 2, 19, 21] */}
         <p className="hero-description text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Un programme entièrement gratuit dédié à la <span className="font-semibold text-foreground">sensibilisation au numérique responsable</span> et à l’autonomisation des communautés en RDC[cite: 2, 21].
+          Un programme entièrement gratuit dédié à la <span className="font-semibold text-foreground">sensibilisation au numérique responsable</span> et à l’autonomisation des communautés en RDC.
         </p>
 
         {/* Actions - Pour rester cohérent avec ton style actuel */}
         <div className="hero-description flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <Button 
             size="lg" 
-            className="rounded-full px-10 py-7 text-base font-semibold shadow-lg hover:shadow-primary/20 transition-all"
+            className="rounded-full px-10 py-7 text-sm font-semibold transition-all"
           >
-            Découvrir le programme [cite: 5]
+            Découvrir le programme
           </Button>
           <Button 
             variant="outline" 
             size="lg" 
-            className="rounded-full px-10 py-7 text-base font-semibold border-primary text-primary hover:bg-primary/5"
+            className="rounded-full px-10 py-7 text-sm font-semibold border-primary text-primary hover:bg-accent/10 hover:text-primary transition-all"
           >
-            Nos interventions [cite: 6]
+            Nos interventions
           </Button>
         </div>
       </div>
