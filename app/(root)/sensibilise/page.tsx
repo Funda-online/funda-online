@@ -6,7 +6,7 @@ import Presentation  from "@/components/sensibilise/Presentation";
 
 const FundaSensibilisePage = () => {
   return (
-    <main className="px-6 md:px-12 py-12 space-y-16">
+    <main className="py-12 space-y-16">
       <Hero />
       <Presentation />
       <Axes />
