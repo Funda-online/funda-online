@@ -26,6 +26,7 @@ const links = [
       { label: "Événements passés", href: "/events/past" },
     ],
   },
+  { label: "Sensibilise", href: "/sensibilise" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ]
