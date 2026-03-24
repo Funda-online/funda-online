@@ -1,5 +1,5 @@
 import { Articles } from "@/components/sensibilise/Articles";
-import { Axes } from "@/components/sensibilise/Axes";
+import Axes  from "@/components/sensibilise/Axes";
 import Hero  from "@/components/sensibilise/Hero";
 import Presentation  from "@/components/sensibilise/Presentation";
 
