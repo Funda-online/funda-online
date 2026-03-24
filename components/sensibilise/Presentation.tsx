@@ -52,14 +52,14 @@ export default function Presentation() {
           {/* Colonne Gauche : Le Contexte */}
           <div ref={leftColRef} className="space-y-6">
             <h2 className="text-primary font-bold tracking-wider uppercase text-sm">
-              Contexte & Justification [cite: 10]
+              Contexte & Justification
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-              Le numérique influence notre quotidien, mais est-il maîtrisé ? [cite: 11]
+              Le numérique influence notre quotidien, mais est-il maîtrisé ? 
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Aujourd’hui, le numérique influence profondément notre manière d’apprendre, de travailler et de communiquer[cite: 11]. 
-              Pourtant, beaucoup utilisent ces outils sans en comprendre réellement les principes ou les risques[cite: 12].
+              Aujourd’hui, le numérique influence profondément notre manière d’apprendre, de travailler et de communiquer. 
+              Pourtant, beaucoup utilisent ces outils sans en comprendre réellement les principes ou les risques.
             </p>
             <div className="p-6 bg-accent/5 border-l-4 border-primary rounded-r-xl">
               <p className="italic text-foreground/80">
@@ -69,12 +69,12 @@ export default function Presentation() {
           </div>
 
           {/* Colonne Droite : La Solution & Cibles */}
-          <div ref={rightColRef} className="space-y-8 bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100">
+          <div ref={rightColRef} className="space-y-8 bg-[var(--muted)]/55 p-8 md:p-12 rounded-3xl">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Notre mission [cite: 24]</h3>
+              <h3 className="text-2xl font-bold mb-4">Notre mission</h3>
               <p className="text-muted-foreground mb-6">
-                <span className="font-semibold text-primary italic">Funda Sensibilise</span> est un programme entièrement gratuit d’impact social[cite: 21]. 
-                Nous accompagnons les communautés vers une meilleure compréhension du numérique pour réduire la fracture digitale[cite: 19, 24].
+                <span className="font-semibold text-primary italic">Funda Sensibilise</span> est un programme entièrement gratuit d’impact social. 
+                Nous accompagnons les communautés vers une meilleure compréhension du numérique pour réduire la fracture digitale.
               </p>
             </div>
 
