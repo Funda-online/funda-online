@@ -15,6 +15,12 @@ export function Articles() {
         Sensibilisations passées
       </h2>
 
+      <p className="text-muted-foreground max-w-2xl">
+Découvrez les différentes actions de sensibilisation déjà
+réalisées par Funda au sein des écoles, universités et
+communautés locales.
+</p>
+
       <div className="grid md:grid-cols-3 gap-6">
         {articles.map((article, i) => (
           <div key={i} className="border rounded-xl overflow-hidden">

@@ -1,18 +1,18 @@
 export function Axes() {
   const axes = [
-    {
-      title: "Intelligence Artificielle",
-      desc: "Comprendre les bases de l’IA et ses impacts"
-    },
-    {
-      title: "Cybersécurité",
-      desc: "Apprendre à se protéger en ligne"
-    },
-    {
-      title: "Auto-apprentissage",
-      desc: "Utiliser internet pour apprendre efficacement"
-    }
-  ];
+  {
+    title: "Intelligence Artificielle",
+    desc: "Comprendre les fondamentaux de l’IA, ses applications concrètes et ses enjeux pour mieux s’approprier ces technologies."
+  },
+  {
+    title: "Cybersécurité",
+    desc: "Adopter les bonnes pratiques pour se protéger contre les menaces numériques et sécuriser ses données au quotidien."
+  },
+  {
+    title: "Auto-apprentissage",
+    desc: "Apprendre à exploiter les ressources en ligne pour développer ses compétences et devenir acteur de son apprentissage."
+  }
+];
 
   return (
     <section className="space-y-6">
