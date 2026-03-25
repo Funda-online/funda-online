@@ -16,19 +16,19 @@ export default function Axes() {
       title: "Intelligence Artificielle",
       desc: "Démystifier l'IA : comprendre ses fondamentaux, ses applications concrètes et les enjeux éthiques pour ne plus subir mais choisir sa technologie.",
       icon: <BrainCircuit className="w-10 h-10" />,
-      color: "bg-primary/10 text-primary",
+      color: "bg-primary text-white",
     },
     {
       title: "Cybersécurité",
       desc: "Protection des données, gestion des mots de passe et réflexes face aux cybermenaces (désinformation, phishing) pour naviguer en toute sérénité.",
       icon: <ShieldCheck className="w-10 h-10" />,
-      color: "bg-primary/10 text-primary",
+      color: "bg-primary text-white",
     },
     {
       title: "Auto-apprentissage",
       desc: "Devenir acteur de son futur : exploiter les cours en ligne, obtenir des certifications et maîtriser l'ingénierie de prompt pour optimiser son temps.",
       icon: <Rocket className="w-10 h-10" />,
-      color: "bg-primary/10 text-primary",
+      color: "bg-primary text-white",
     },
   ];
 
@@ -63,7 +63,7 @@ export default function Axes() {
         
         <div className="max-w-2xl mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Nos axes d’intervention
+            Nos <span className="">axes</span> d’intervention
           </h2>
           <p className="text-lg text-muted-foreground">
             Le programme s'articule autour de trois piliers fondamentaux pour une autonomie numérique complète.
@@ -74,7 +74,7 @@ export default function Axes() {
           {axes.map((item, i) => (
             <div 
               key={i} 
-              className="axis-card group relative p-8 bg-white border border-slate-200 rounded-3xl *shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              className="axis-card group relative p-8 bg-white *border border-slate-200 rounded-3xl *shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
             >
               <div className={`w-16 h-16 rounded-2xl ${item.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
                 {item.icon}
