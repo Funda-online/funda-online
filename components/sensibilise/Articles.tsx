@@ -84,7 +84,7 @@ export function Articles() {
           {articles.map((article, i) => (
             <article 
               key={i} 
-              className="article-card group cursor-pointer flex flex-col bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
+              className="article-card group cursor-pointer flex flex-col bg-white border border-slate-100 rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image 
@@ -95,7 +95,7 @@ export function Articles() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary/90 text-white hover:bg-white backdrop-blur-md border-none shadow-sm">
+                  <Badge className="bg-primary/90 text-white backdrop-blur-md border-none shadow-sm">
                     {article.category}
                   </Badge>
                 </div>

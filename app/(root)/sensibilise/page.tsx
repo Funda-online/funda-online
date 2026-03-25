@@ -1,6 +1,7 @@
 import { Articles } from "@/components/sensibilise/Articles";
 import Axes  from "@/components/sensibilise/Axes";
 import Hero  from "@/components/sensibilise/Hero";
+import ModeleIntervention from "@/components/sensibilise/ModeleIntervention";
 import Presentation  from "@/components/sensibilise/Presentation";
 
 
@@ -11,6 +12,7 @@ const FundaSensibilisePage = () => {
       <Presentation />
       <Axes />
       <Articles />
+      <ModeleIntervention />
     </main>
   );
 }
