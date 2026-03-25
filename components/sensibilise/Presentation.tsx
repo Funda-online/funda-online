@@ -80,7 +80,7 @@ export default function Presentation() {
 
             {/* Grille des cibles */}
             <div className="space-y-4">
-              <h4 className="font-bold text-sm uppercase tracking-widest text-slate-400">Publics cibles [cite: 22]</h4>
+              <h4 className="font-bold text-sm uppercase tracking-widest text-slate-400">Publics cibles</h4>
               <div className="grid grid-cols-2 gap-4">
                 {targets.map((target, idx) => (
                   <div key={idx} className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-slate-200/50">
