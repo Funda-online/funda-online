@@ -87,7 +87,7 @@ const Navbar = () => {
     <header
       ref={headerRef}
       className={`sticky top-0 z-50 bg-background transition-shadow duration-300 ${
-        isScrolled ? "*shadow-sm border border-primary/10" : "shadow-none"
+        isScrolled ? "*shadow-sm border-b border-primary/10" : "shadow-none"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-16 lg:px-20">
@@ -143,7 +143,7 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="flex flex-row items-center gap-1">
+          <div className="flex flex-row items-center gap-0.5">
             <a
               href="https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36"
               target="_blank"
@@ -151,7 +151,7 @@ const Navbar = () => {
             >
               <Button size="lg" 
               // className="* *md:flex rounded-full py-[22.5px] text-base font-semibold"
-              className="rounded-full hidden px-10 w-38 md:flex py-7 text-sm font-semibold transition-all"
+              className="rounded-full px-1 w-34 md:w-38 md:flex py-7 text-sm font-semibold transition-all"
               >
                 <FaWhatsapp 
                 // className="h-6 w-6 md:h-12 md:w-12" 
