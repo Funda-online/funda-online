@@ -96,7 +96,7 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-6">
-          <NavigationMenu className="hidden md:flex gap-6 ml-6 font-semibold text-base text-gray-700 items-center">
+          <NavigationMenu className="hidden md:flex gap-6 ml-6 *font-semibold text-base text-gray-700 items-center">
             <NavigationMenuList>
               {links.map((link) => (
                 <NavigationMenuItem key={link.label}>
@@ -149,8 +149,14 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="*hidden *md:flex rounded-full py-[22.5px] text-base font-semibold">
-                <FaWhatsapp className="h-6 w-6 md:h-7 md:w-7" />
+              <Button size="lg" 
+              // className="* *md:flex rounded-full py-[22.5px] text-base font-semibold"
+              className="rounded-full hidden px-10 w-38 md:flex py-7 text-sm font-semibold transition-all"
+              >
+                <FaWhatsapp 
+                // className="h-6 w-6 md:h-12 md:w-12" 
+                size={24} 
+                />
                 <span>Rejoindre</span>
               </Button>
             </a>
