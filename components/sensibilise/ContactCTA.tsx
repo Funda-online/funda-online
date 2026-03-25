@@ -7,8 +7,8 @@ export default function ContactCTA() {
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
       {/* Cercles décoratifs subtils pour casser la monotonie */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -mr-48 -mt-48" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -ml-48 -mb-48" />
+      {/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -mr-48 -mt-48" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -ml-48 -mb-48" /> */}
 
       <div className="container mx-auto px-4 md:px-16 lg:px-20 relative z-10">
         <div className="">

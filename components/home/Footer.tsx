@@ -69,7 +69,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href={social.href}
-                  className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 hover:bg-primary hover:border-primary text-white transition-all duration-300"
+                  className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5  border-white/10 hover:bg-primary hover:border-primary text-white transition-all duration-300"
                 >
                   {social.icon}
                 </a>
@@ -147,10 +147,10 @@ export default function Footer() {
           </div>
           
           <div className="flex gap-8">
-            <Link href="/privacy" className="text-xs font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest">
+            <Link href="/privacy" className="text-[11px] font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest">
               Confidentialite
             </Link>
-            <Link href="/terms" className="text-xs font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest">
+            <Link href="/terms" className="text-[11px] font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest">
               Conditions
             </Link>
           </div>
