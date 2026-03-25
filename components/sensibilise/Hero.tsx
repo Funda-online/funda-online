@@ -55,7 +55,7 @@ export default function Hero() {
           ref={titleRef}
           className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground"
         >
-          Funda <span className="text-primary">Sensibilise</span> [cite: 1]
+          Funda <span className="text-primary">Sensibilise</span> 2026
         </h1>
 
         {/* Description [cite: 2, 19, 21] */}
