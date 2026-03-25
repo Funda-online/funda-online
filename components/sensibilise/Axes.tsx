@@ -74,7 +74,7 @@ export default function Axes() {
           {axes.map((item, i) => (
             <div 
               key={i} 
-              className="axis-card group relative p-8 bg-white border border-slate-200 rounded-3xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              className="axis-card group relative p-8 bg-white border border-slate-200 rounded-3xl *shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
             >
               <div className={`w-16 h-16 rounded-2xl ${item.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
                 {item.icon}
