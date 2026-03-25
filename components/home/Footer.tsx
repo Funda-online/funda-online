@@ -3,92 +3,73 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Facebook, MessageCircleDashed, Youtube, Linkedin, Mail, MapPin, Phone, Send, ChevronRight, MessageCircle } from "lucide-react"
+import { Facebook, Youtube, Linkedin, Mail, MapPin, Phone, ChevronRight, Send, Globe } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "../ui/button"
-import {FaWhatsapp} from "react-icons/fa6"
+import { FaWhatsapp } from "react-icons/fa6"
 
-// Enregistrer le plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null)
-  const columnsRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "top 90%",
-        toggleActions: "play none none none"
-      }
-    })
-
-    tl.from(footerRef.current?.querySelector(".footer-logo")!, {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    })
-      // .from(columnsRef.current, {
-      //   y: 40,
-      //   opacity: 0,
-      //   stagger: 0.15,
-      //   duration: 0.6,
-      //   ease: "power3.out"
-      // }, "-=0.4")
-      .from(footerRef.current?.querySelector(".footer-bottom")!, {
-        y: 20,
+    const ctx = gsap.context(() => {
+      gsap.from(".footer-content > *", {
+        y: 40,
         opacity: 0,
-        duration: 0.5
-      }, "-=0.3")
-
-    return () => { tl.kill(); }
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 85%",
+        }
+      })
+    }, footerRef)
+    return () => ctx.revert()
   }, [])
 
   return (
     <footer
       ref={footerRef}
-      className="relative bg-[var(--foreground)] text-white overflow-hidden"
+      className="relative bg-foreground text-white overflow-hidden"
     >
-      {/* Éléments décoratifs */}
-      {/* <div className="absolute top-0 left-0 w-full h-full opacity-5">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-[var(--primary)] animate-float-1"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full bg-[var(--accent)] animate-float-2"></div>
-      </div> */}
+      {/* Lueur subtile en arrière-plan pour donner de la profondeur */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] opacity-50" />
+      </div>
 
-      <div className="container mx-auto px-4 md:px-16 lg:px-20 pt-12 md:pt-16 relative z-10">
-        {/* Contenu principal */}
-        <div className="*grid *grid-cols-1 *md:grid-cols-2 *lg:grid-cols-3 gap-y-8 md:gap-y-12 *gap-12 *border-2 flex flex-col md:flex-row">
-          {/* Colonne 1 - Logo et description */}
-          <div
-            ref={el => { columnsRef.current[0] = el as HTMLDivElement }}
-            className="footer-logo md:mr-20 w-full md:w-[50%]"
-          >
-            <Link href="/" className="inline-block mb-4 md:mb-6">
+      <div className="container mx-auto px-4 md:px-16 lg:px-20 pt-20 pb-10 relative z-10">
+        
+        <div className="footer-content grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
+          
+          {/* Colonne 1 : Brand & Vision (5 colonnes) */}
+          <div className="md:col-span-5 space-y-8">
+            <Link href="/" className="inline-block transition-transform hover:scale-105">
               <Image
                 src="/logo/logo-3.png"
                 alt="Funda Logo"
-                width={47}
-                height={47}
+                width={56}
+                height={56}
+                className="brightness-110"
               />
             </Link>
-            <p className="mb-4 md:mb-6 opacity-80">
-              Funda est une plateforme numérique dédiée à guider les nouveaux apprenants en informatique. Nous simplifions votre parcours en vous orientant vers les meilleures formations et programmes de mentorat adaptés à vos besoins. Funda encourage l’auto-apprentissage et vous aide à exploiter pleinement les ressources en ligne pour acquérir des compétences numériques à votre rythme.
+            <p className="text-slate-400 text-lg leading-relaxed max-w-md">
+              Funda accompagne la nouvelle génération d'apprenants en RDC. Nous transformons l'accès au numérique en une opportunité d'émancipation grâce à l'auto-apprentissage et au mentorat.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {[
-                { icon: <Facebook className="w-5 h-5" />, label: "Facebook", href: "https://www.facebook.com/funda.cd?mibextid=rS40aB7S9Ucbxw6v" },
-                { icon: <FaWhatsapp className="w-5 h-5" />, label: "Whatsapp", href: " https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36" },
-                { icon: <Youtube className="w-5 h-5" />, label: "Youtube", href: "https://youtube.com/@fundaonlinecd?si=bne9J-0f2Bmdqs8L" },
-                { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", href: "https://www.linkedin.com/company/fundacd/" }
-              ].map((social, index) => (
+                { icon: <Facebook size={20} />, href: "https://www.facebook.com/funda.cd" },
+                { icon: <FaWhatsapp size={20} />, href: "https://whatsapp.com/channel/..." },
+                { icon: <Youtube size={20} />, href: "https://youtube.com/..." },
+                { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/..." }
+              ].map((social, i) => (
                 <a
-                  key={index}
+                  key={i}
                   href={social.href}
-                  aria-label={social.label}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 hover:bg-primary hover:border-primary text-white transition-all duration-300"
                 >
                   {social.icon}
                 </a>
@@ -96,149 +77,85 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Colonne 2 - Liens rapides */}
-          <div
-            ref={el => { columnsRef.current[1] = el as HTMLDivElement }}
-            className="space-y-3 md:space-y-4 w-full md:w-[25%]"
-          >
-            <h3 className="text-lg font-semibold mb-4">Liens rapides</h3>
-            <ul className="space-y-3">
+          {/* Colonne 2 : Navigation Rapide (3 colonnes) */}
+          <div className="md:col-span-3 space-y-8">
+            <h3 className="text-xl font-bold text-white relative inline-block">
+              Navigation
+              <span className="absolute -bottom-2 left-0 w-8 h-1 bg-primary rounded-full"></span>
+            </h3>
+            <ul className="space-y-4">
               {[
                 { label: "Accueil", href: "/" },
-                { label: "Événements à venir", href: "/events/upcoming" },
-                { label: "Événements passés", href: "/events/past" },
-                { label: "Blog", href: "/blog" },
-                // { label: "Ressources", href: "/resources" },
+                { label: "Sensibilise 2026", href: "/sensibilise" },
+                { label: "Événements", href: "/events/upcoming" },
+                { label: "Notre Blog", href: "/blog" },
                 { label: "Contact", href: "/contact" }
-              ].map((link, index) => (
-                <li key={index}>
+              ].map((link, i) => (
+                <li key={i}>
                   <Link
                     href={link.href}
-                    className="flex flex-row items-center gap-2"
+                    className="group flex items-center gap-2 text-slate-400 hover:text-primary transition-colors"
                   >
-                    <ChevronRight className="h-4 w-4" />
-                    <span className="opacity-80 hover:opacity-100 hover:underline transition-all">{link.label}</span>
+                    <ChevronRight size={14} className="text-primary opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                    <span>{link.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Colonne 3 - Ressources */}
-          {/* <div
-            ref={el => { columnsRef.current[2] = el as HTMLDivElement }}
-            className="space-y-4"
-          >
-            <h3 className="text-lg font-semibold mb-4">Ressources</h3>
-            <ul className="space-y-3">
-              {[
-                { label: "Documentation", href: "/docs" },
-                { label: "Tutoriels", href: "/tutorials" },
-                { label: "FAQ", href: "/faq" },
-                { label: "Mentors", href: "/mentors" },
-                { label: "Forum", href: "/forum" }
-              ].map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="flex flex-row items-center gap-2"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                    <span className="opacity-80 hover:opacity-100 hover:underline transition-all">{link.label}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div> */}
-
-          {/* Colonne 4 - Contact */}
-          <div
-            ref={el => { columnsRef.current[3] = el as HTMLDivElement }}
-            className="space-y-4 md:space-y-6 w-full md:w-[25%]"
-          >
-            <h3 className="text-lg font-semibold">Contactez-nous</h3>
-            <ul className="space-y-3 md:space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
-                <span className="opacity-80">
-                  15, chaussée de Kasenga,<br /> Bel air, Lubumbashi, RDC
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5" />
-                <a
-                  href="mailto:contact@funda.fr"
-                  className="opacity-80 hover:opacity-100 hover:underline transition-all"
-                >
+          {/* Colonne 3 : Infos de Contact (4 colonnes) */}
+          <div className="md:col-span-4 space-y-8">
+            <h3 className="text-xl font-bold text-white relative inline-block">
+              Nous trouver
+              <span className="absolute -bottom-2 left-0 w-8 h-1 bg-primary rounded-full"></span>
+            </h3>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                  <MapPin size={18} className="text-primary group-hover:text-white" />
+                </div>
+                <p className="text-slate-400 leading-relaxed group-hover:text-slate-200">
+                  15, chaussée de Kasenga, Bel air,<br /> Lubumbashi, Haut-Katanga, RDC
+                </p>
+              </div>
+              <div className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                  <Mail size={18} className="text-primary group-hover:text-white" />
+                </div>
+                <a href="mailto:info@funda-online.com" className="text-slate-400 group-hover:text-slate-200 transition-colors">
                   info@funda-online.com
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5" />
-                <a
-                  href="tel:+243973900363"
-                  className="opacity-80 hover:opacity-100 hover:underline transition-all"
-                >
+              </div>
+              <div className="flex items-center gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                  <Phone size={18} className="text-primary group-hover:text-white" />
+                </div>
+                <a href="tel:+243973900363" className="text-slate-400 group-hover:text-slate-200 transition-colors">
                   +243 973 900 363
                 </a>
-              </li>
-            </ul>
-
-            {/* Newsletter */}
-            {/* <div className="mt-6">
-              <h4 className="text-sm font-medium mb-3">NEWSLETTER</h4>
-              <div className="relative w-full">
-                <input
-                  type="email"
-                  placeholder="Votre email"
-                  className="w-full bg-white/10 border border-white/20 rounded-full px-4 pr-10 py-2 text-sm placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                />
-                <Button
-                size="sm"
-                  className="absolute top-1/2 right-1 -translate-y-1/2 rounded-full p-1.5 bg-[var(--primary)] hover:bg-[var(--primary)]/50 transition"
-                  aria-label="S'abonner à la newsletter"
-                >
-                  <Send className="w-3 h-3" />
-                </Button>
               </div>
-            </div> */}
-          </div>
-        </div>
-
-        {/* Bas du footer */}
-        <div className="footer-bottom border-t border-white/10 mt-12 md:mt-16 py-8 text-center md:text-left">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm opacity-70">
-              © {new Date().getFullYear()} Funda. Tous droits réservés.
-            </p>
-            <div className="flex gap-3 md:gap-6">
-              <Link href="/privacy" className="text-sm opacity-70 hover:opacity-100 transition-all">
-                Politique de confidentialité
-              </Link>
-              <Link href="/terms" className="text-sm opacity-70 hover:opacity-100 transition-all">
-                Conditions d'utilisation
-              </Link>
-              {/* <Link href="/cookies" className="text-sm opacity-70 hover:opacity-100 transition-all">
-                Préférences cookies
-              </Link> */}
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Styles d'animation */}
-      <style jsx global>{`
-        @keyframes float-1 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(10px, 15px) rotate(3deg); }
-        }
-        @keyframes float-2 {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(-10px, 15px) rotate(-3deg); }
-        }
-        .animate-float-1 { animation: float-1 8s ease-in-out infinite; }
-        .animate-float-2 { animation: float-2 10s ease-in-out infinite; }
-      `}</style>
+        {/* Divider & Bottom */}
+        <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2 text-slate-500 text-sm">
+            {/* <Globe size={14} /> */}
+            <p>© {new Date().getFullYear()} Funda. Tous droits réservés.</p>
+          </div>
+          
+          <div className="flex gap-8">
+            <Link href="/privacy" className="text-xs font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest">
+              Confidentialite
+            </Link>
+            <Link href="/terms" className="text-xs font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest">
+              Conditions
+            </Link>
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }
