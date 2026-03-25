@@ -19,6 +19,24 @@ const articles = [
     image: "/img/1.webp",
     galleryCount: 12
   },
+  {
+    title: "Sensibilisation à l’IA et aux métiers du futur",
+    location: "Lubumbashi",
+    date: "10 Février 2026",
+    category: "Éducation",
+    summary: "Une session immersive pour démystifier l'IA auprès des étudiants de l'UNILU, abordant les opportunités locales et l'éthique numérique.",
+    image: "/img/1.webp",
+    galleryCount: 12
+  },
+  {
+    title: "Sensibilisation à l’IA et aux métiers du futur",
+    location: "Lubumbashi",
+    date: "10 Février 2026",
+    category: "Éducation",
+    summary: "Une session immersive pour démystifier l'IA auprès des étudiants de l'UNILU, abordant les opportunités locales et l'éthique numérique.",
+    image: "/img/1.webp",
+    galleryCount: 12
+  },
 ];
 
 export function Articles() {
@@ -84,7 +102,7 @@ export function Articles() {
           {articles.map((article, i) => (
             <article 
               key={i} 
-              className="article-card group cursor-pointer flex flex-col bg-white border border-slate-100 rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
+              className="article-card group cursor-pointer flex flex-col bg-white border border-primary/10 rounded-4xl overflow-hidden *shadow-sm hover:shadow-sm transition-all duration-500"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image 
@@ -95,7 +113,7 @@ export function Articles() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary/90 text-white backdrop-blur-md border-none shadow-sm">
+                  <Badge className="bg-primary/90 text-white px-3 backdrop-blur-md border-none shadow-sm">
                     {article.category}
                   </Badge>
                 </div>

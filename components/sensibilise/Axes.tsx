@@ -88,9 +88,9 @@ export default function Axes() {
                 {item.desc}
               </p>
 
-              {/* <div className="flex items-center text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex items-center text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                 En savoir plus <ArrowRight className="ml-2 w-4 h-4" />
-              </div> */}
+              </div>
 
               <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
                 {item.icon}

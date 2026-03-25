@@ -87,7 +87,7 @@ const Navbar = () => {
     <header
       ref={headerRef}
       className={`sticky top-0 z-50 bg-background transition-shadow duration-300 ${
-        isScrolled ? "shadow-sm" : "shadow-none"
+        isScrolled ? "*shadow-sm border border-primary/10" : "shadow-none"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-16 lg:px-20">
