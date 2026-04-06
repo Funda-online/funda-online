@@ -21,10 +21,8 @@ export function Articles({ sensibilisation }: { sensibilisation: any[] }) {
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray(".article-card");
 
-      // ✅ état initial sécurisé
       gsap.set(cards, { opacity: 0, y: 60 });
 
-      // ✅ animation fiable
       gsap.to(cards, {
         opacity: 1,
         y: 0,
@@ -38,7 +36,6 @@ export function Articles({ sensibilisation }: { sensibilisation: any[] }) {
         },
       });
 
-      // ✅ animation du header
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, y: 30 },

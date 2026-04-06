@@ -15,29 +15,8 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-// Données fictives (Mock Data) basées sur ton schéma
-const MOCK_DATA = {
-  id: "1",
-  title: "Sensibilisation à l'IA et aux métiers du futur",
-  category: "Éducation",
-  location: "Lubumbashi, UNILU",
-  date: "10 Février 2026",
-  summary: "Une session immersive pour démystifier l'IA auprès des étudiants de l'UNILU, abordant les opportunités locales et l'éthique numérique.",
-  content: `
-    <p>Le 10 février 2026, l'équipe de Funda s'est rendue à l'Université de Lubumbashi pour une session de sensibilisation inédite. Devant un amphithéâtre complet, nous avons exploré comment l'intelligence artificielle transforme déjà le marché du travail en République Démocratique du Congo.</p>
-    <p>Les échanges ont porté sur l'importance de l'ingénierie de prompt, l'utilisation responsable des outils comme ChatGPT et Claude, ainsi que la protection des données personnelles dans un monde de plus en plus automatisé.</p>
-    <p>Cette intervention marque le début d'une série de conférences visant à préparer la jeunesse congolaise aux défis technologiques de demain, en mettant l'accent sur l'auto-apprentissage et la curiosité intellectuelle.</p>
-  `,
-  mainImage: "/img/1.webp",
-  gallery: [
-    "/img/1.webp",
-    "/img/1.webp",
-    "/img/1.webp",
-    "/img/1.webp",
-  ]
-}
-
-export default function SensibilisationDetail() {
+// Le composant reçoit maintenant l'objet "data" de Sanity en tant que prop
+export default function SensibilisationDetail({ data }: { data: any }) {
   const router = useRouter()
   const pageRef = useRef(null)
   
@@ -55,6 +34,9 @@ export default function SensibilisationDetail() {
     return () => ctx.revert()
   }, [])
 
+  // Sécurité : si les données ne sont pas encore chargées
+  if (!data) return null;
+
   return (
     <div ref={pageRef} className="min-h-screen bg-white pb-20">
       
@@ -62,21 +44,21 @@ export default function SensibilisationDetail() {
       <section className="container mx-auto px-4 md:px-16 lg:px-20 pt-8">
         <div className="max-w-4xl mx-auto text-center mb-12">
           <div className="meta-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6">
-            {MOCK_DATA.category}
+            {data.category}
           </div>
           
           <h1 className="main-title text-3xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.1] mb-8">
-            {MOCK_DATA.title}
+            {data.title}
           </h1>
 
           <div className="flex flex-wrap justify-center gap-6 text-slate-500 font-medium">
             <div className="flex items-center text-sm md:text-base gap-1 md:gap-2">
               <MapPin className="text-primary h-4 w-4 md:h-4.5 md:w-4.5" />
-              <span>{MOCK_DATA.location}</span>
+              <span>{data.location}</span>
             </div>
             <div className="flex items-center text-sm md:text-base gap-1 md:gap-2">
               <Calendar className="text-primary h-4 w-4 md:h-4.5 md:w-4.5" />
-              <span>{MOCK_DATA.date}</span>
+              <span>{new Date(data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
             </div>
           </div>
         </div>
@@ -84,8 +66,8 @@ export default function SensibilisationDetail() {
         {/* Image Principale */}
         <div className="hero-image relative aspect-[21/9] w-full md:rounded-3xl  overflow-hidden mb-12 md:mb-20">
           <Image 
-            src={MOCK_DATA.mainImage} 
-            alt={MOCK_DATA.title}
+            src={data.mainImage} 
+            alt={data.title}
             fill
             className="object-cover"
             priority
@@ -102,37 +84,39 @@ export default function SensibilisationDetail() {
             <div className="lg:col-span-8 space-y-8">
               <div className="prose prose-lg max-w-none text-slate-600 leading-relaxed">
                 <p className="text-xl font-medium text-slate-900 mb-8">
-                  {MOCK_DATA.summary}
+                  {data.summary}
                 </p>
-                {/* Simulation de contenu riche provenant de Sanity */}
-                <div dangerouslySetInnerHTML={{ __html: MOCK_DATA.content }} className="space-y-6" />
+                {/* Contenu riche provenant de Sanity */}
+                <div dangerouslySetInnerHTML={{ __html: data.content }} className="space-y-6" />
               </div>
 
               {/* Galerie d'images */}
-              <div className="pt-12">
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-bold flex items-center gap-3">
-                    <ImageIcon className="text-primary" />
-                    Moments forts
-                  </h3>
-                  <span className="text-sm font-medium text-slate-400 bg-slate-100 px-3 py-1 rounded-full">
-                    {MOCK_DATA.gallery.length} photos
-                  </span>
+              {data.gallery && data.gallery.length > 0 && (
+                <div className="pt-12">
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="text-2xl font-bold flex items-center gap-3">
+                      <ImageIcon className="text-primary" />
+                      Moments forts
+                    </h3>
+                    <span className="text-sm font-medium text-slate-400 bg-slate-100 px-3 py-1 rounded-full">
+                      {data.gallery.length} photos
+                    </span>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    {data.gallery.map((img: string, index: number) => (
+                      <div key={index} className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer">
+                        <Image 
+                          src={img} 
+                          alt={`Photo ${index + 1}`}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  {MOCK_DATA.gallery.map((img, index) => (
-                    <div key={index} className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer">
-                      <Image 
-                        src={img} 
-                        alt={`Photo ${index + 1}`}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Colonne de droite : Sidebar infos / Partage */}

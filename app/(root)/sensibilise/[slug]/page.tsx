@@ -1,46 +1,41 @@
-import BlogDetailPage from "@/components/blog/BlogDetailPage"
 import SensibilisationDetail from "@/components/sensibilise/SensibiliseDetailPage"
 import { client } from "@/sanity/lib/client"
+import { notFound } from "next/navigation"
 
 const query = `
-  *[_type == "blog" && slug.current == $slug][0]{
+  *[_type == "sensibilisation" && slug.current == $slug][0]{
     _id,
     title,
-    slug,
-    excerpt,
-    content,
-    image,
-    category,
-    tags,
-    author,
+    "slug": slug.current,
+    location,
     date,
-    readTime,
-    "relatedPosts": *[_type == "blog" && slug.current != $slug][0..2]{
+    category,
+    summary,
+    content,
+    "mainImage": mainImage.asset->url,
+    "gallery": gallery[].asset->url,
+    "relatedSessions": *[_type == "sensibilisation" && slug.current != $slug] | order(date desc)[0..1]{
       title,
-      slug,
-      excerpt,
-      image,
-      readTime
+      "slug": slug.current,
+      location,
+      date,
+      "mainImage": mainImage.asset->url
     }
   }
 `
 
-// Génère les slugs statiquement
-// export async function generateStaticParams() {
-//   const posts = await client.fetch(`*[_type == "blog"]{ "slug": slug.current }`)
-  
-//   return posts.map((post: { slug: string }) => ({
-//     slug: post.slug,
-//   }))
-// }
-
 export default async function SensibilisePage({ params }: { params: Promise<{ slug: string }> }) {
-  // const { slug } = await params
-  // const post = await client.fetch(query, { slug })
+  const { slug } = await params
+  
+  // Fetch des données réelles
+  const session = await client.fetch(query, { slug }, { 
+    next: { revalidate: 60 } 
+  })
 
-  // if (!post) {
-  //   return <div className="text-center py-20">Article introuvable.</div>
-  // }
+  // Gestion de l'erreur 404 si le slug n'existe pas
+  if (!session) {
+    notFound()
+  }
 
-  return <SensibilisationDetail  />
+  return <SensibilisationDetail data={session} />
 }
