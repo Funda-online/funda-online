@@ -111,7 +111,7 @@ export function Articles() {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
                 <div className="absolute top-4 left-4">
                   <Badge className="bg-primary/90 text-white px-3 backdrop-blur-md border-none shadow-sm">
                     {article.category}

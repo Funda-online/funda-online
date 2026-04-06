@@ -48,7 +48,7 @@ export default function Footer() {
     >
       {/* Lueur subtile en arrière-plan pour donner de la profondeur */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] opacity-50" />
+        <div className="absolute top-0 left-1/4 w-125 h-125 bg-primary/10 rounded-full blur-[120px] opacity-50" />
       </div>
 
       <div className="container mx-auto px-4 md:px-16 lg:px-20 pt-20 pb-10 relative z-10">

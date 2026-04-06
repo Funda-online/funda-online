@@ -58,7 +58,7 @@ export default function Axes() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-[var(--muted)]">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-muted">
       <div className="container mx-auto px-4 md:px-16 lg:px-20">
         
         <div className="max-w-2xl mb-12 md:mb-16">
