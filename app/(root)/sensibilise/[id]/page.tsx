@@ -82,7 +82,7 @@ export default function SensibilisationDetail() {
         </div>
 
         {/* Image Principale */}
-        <div className="hero-image relative aspect-[21/9] w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl mb-20 border-4 border-white">
+        <div className="hero-image relative aspect-[21/9] w-full rounded-3xl  overflow-hidden mb-20">
           <Image 
             src={MOCK_DATA.mainImage} 
             alt={MOCK_DATA.title}
@@ -137,14 +137,14 @@ export default function SensibilisationDetail() {
 
             {/* Colonne de droite : Sidebar infos / Partage */}
             <div className="lg:col-span-4">
-              <div className="sticky top-24 space-y-6">
+              <div className="sticky top-28 space-y-6">
                 <div className="p-8 rounded-[2rem] bg-slate-50 border border-slate-100">
                   <h4 className="font-bold text-lg mb-4">Partager l'impact</h4>
-                  <div className="flex gap-3">
+                  <div className="flex items-center gap-3">
                     <Button variant="outline" size="icon" className="rounded-full">
                       <Share2 size={18} />
                     </Button>
-                    <Button className="flex-1 rounded-full font-bold">
+                    <Button className="flex-1 rounded-full text-sm font-bold">
                       Nous rejoindre
                     </Button>
                   </div>
@@ -156,7 +156,7 @@ export default function SensibilisationDetail() {
                     Vous souhaitez organiser une session de sensibilisation dans votre établissement ?
                   </p>
                   <Link href="/contact">
-                    <Button variant="secondary" className="w-full rounded-full font-bold flex gap-2">
+                    <Button variant="secondary" className="w-full rounded-full text-sm font-bold flex gap-2">
                       Faire une demande <ChevronRight size={16} />
                     </Button>
                   </Link>
