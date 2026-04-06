@@ -39,7 +39,7 @@ const articles = [
   },
 ];
 
-export function Articles() {
+export function Articles(sensibilisation: any) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
