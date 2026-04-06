@@ -70,19 +70,19 @@ export default function SensibilisationDetail() {
           </h1>
 
           <div className="flex flex-wrap justify-center gap-6 text-slate-500 font-medium">
-            <div className="flex items-center gap-2">
-              <MapPin size={18} className="text-primary" />
+            <div className="flex items-center text-sm md:text-base gap-1 md:gap-2">
+              <MapPin className="text-primary h-4 w-4 md:h-4.5 md:w-4.5" />
               <span>{MOCK_DATA.location}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Calendar size={18} className="text-primary" />
+            <div className="flex items-center text-sm md:text-base gap-1 md:gap-2">
+              <Calendar className="text-primary h-4 w-4 md:h-4.5 md:w-4.5" />
               <span>{MOCK_DATA.date}</span>
             </div>
           </div>
         </div>
 
         {/* Image Principale */}
-        <div className="hero-image relative aspect-[21/9] w-full rounded-3xl  overflow-hidden mb-20">
+        <div className="hero-image relative aspect-[21/9] w-full md:rounded-3xl  overflow-hidden mb-12 md:mb-20">
           <Image 
             src={MOCK_DATA.mainImage} 
             alt={MOCK_DATA.title}
