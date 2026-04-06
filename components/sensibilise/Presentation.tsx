@@ -69,7 +69,7 @@ export default function Presentation() {
           </div>
 
           {/* Colonne Droite : La Solution & Cibles */}
-          <div ref={rightColRef} className="space-y-8 bg-[var(--muted)]/55 p-8 md:p-12 rounded-3xl">
+          <div ref={rightColRef} className="space-y-8 border border-primary/10 p-8 md:p-12 rounded-4xl">
             <div>
               <h3 className="text-2xl font-bold mb-4">Notre mission</h3>
               <p className="text-muted-foreground mb-6">
@@ -83,7 +83,7 @@ export default function Presentation() {
               <h4 className="font-bold text-sm uppercase tracking-widest text-slate-400">Publics cibles</h4>
               <div className="grid grid-cols-2 gap-4">
                 {targets.map((target, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border border-slate-200/50">
+                  <div key={idx} className="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-sm border border-primary/10">
                     <span className="text-primary">{target.icon}</span>
                     <span className="text-sm font-medium text-slate-700">{target.label}</span>
                   </div>

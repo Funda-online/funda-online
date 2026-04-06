@@ -43,7 +43,7 @@ export default function Axes() {
       gsap.to(cards, {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.4,
         stagger: 0.2,
         ease: "power3.out",
         scrollTrigger: {

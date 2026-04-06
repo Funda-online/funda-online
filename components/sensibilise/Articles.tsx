@@ -54,7 +54,7 @@ export function Articles() {
       gsap.to(cards, {
         opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 0.4,
         stagger: 0.2,
         ease: "power4.out",
         scrollTrigger: {

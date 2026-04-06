@@ -91,7 +91,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-16 lg:px-20">
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="shrink-0">
           <Image src={"/logo/logo-3.png"} alt="logo" width={48} height={48} />
         </Link>
 
@@ -103,13 +103,13 @@ const Navbar = () => {
                   {link.children ? (
                     <>
                       <NavigationMenuTrigger
-                        className={`px-3 text-base ${
+                        className={`px-3 text-[15.5px] ${
                           pathname === link.href ? "text-primary" : "hover:text-primary"
                         }`}
                       >
                         {link.label}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="p-2 bg-white shadow-white">
+                      <NavigationMenuContent className="p-2 bg-white shadow-none">
                         <ul className="flex flex-col gap-2 w-48">
                           {link.children.map((sublink) => (
                             <li key={sublink.label}>

@@ -113,7 +113,7 @@ export default function Footer() {
                 { label: "Accueil", href: "/" },
                 { label: "Sensibilise 2026", href: "/sensibilise" },
                 { label: "Événements", href: "/events/upcoming" },
-                { label: "Notre Blog", href: "/blog" },
+                { label: "Blog", href: "/blog" },
                 { label: "Contact", href: "/contact" },
               ].map((link, i) => (
                 <li key={i}>
