@@ -6,18 +6,16 @@ import ModeleIntervention from "@/components/sensibilise/ModeleIntervention";
 import Presentation  from "@/components/sensibilise/Presentation";
 import { client } from "@/sanity/lib/client";
 
-const query = `*[_type == "sensibilise"] | order(date desc) {
+const query = `*[_type == "sensibilisation"] | order(date desc)[0...3] {
   _id,
   title,
-  slug,
-  excerpt,
-  content,
-  image,
-  category,
-  tags,
-  author,
+  "slug": slug.current,
+  summary,
+  location,
   date,
-  readTime
+  category,
+  "mainImageUrl": mainImage.asset->url,
+  "photoCount": count(gallery)
 }`
 
 const FundaSensibilisePage = async () => {
