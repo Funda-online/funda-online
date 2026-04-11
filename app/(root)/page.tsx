@@ -52,9 +52,9 @@ export default async function Home() {
 
       {nextSensibilisation && <NextSensibilisation data={nextSensibilisation} />}
 
-      <InspiringSectionWrapper />
-      
       <ArticlesGrid articles={articles} />
+      
+      <InspiringSectionWrapper />
 
       <Contact />
     </div>
