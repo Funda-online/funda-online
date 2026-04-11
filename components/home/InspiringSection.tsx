@@ -17,45 +17,35 @@ export default function InspiringSection({ events }: { events: any[] }) {
   // console.log("events: ", events)
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 70%",
-        toggleActions: "play none none none"
-      }
-    })
+    const ctx = gsap.context(() => {
+      // Animation du bloc texte
+      gsap.from(textRef.current, {
+        x: -60,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        }
+      });
 
-    tl.from(textRef.current, {
-      x: -50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    })
-    .from(imageRef.current, {
-      x: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    }, "-=0.4")
-    // .from(listItemsRef.current, {
-    //   y: 20,
-    //   opacity: 0,
-    //   stagger: 0.15,
-    //   duration: 0.5,
-    //   ease: "back.out"
-    // }, "-=0.3")
+      // Animation cascade des points de la liste
+      gsap.from(listItemsRef.current, {
+        x: -20,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        }
+      });
+    }, sectionRef);
 
-    // Animation de l'élément vidéo
-    gsap.to(".video-play-button", {
-      scale: 1.1,
-      repeat: -1,
-      yoyo: true,
-      duration: 1.5,
-      ease: "sine.inOut"
-    })
-
-    return () => { tl.kill(); }
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section ref={sectionRef} className="relative py-12 md:py-24 overflow-hidden">
@@ -63,7 +53,7 @@ export default function InspiringSection({ events }: { events: any[] }) {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Texte */}
           <div ref={textRef} className="space-y-6">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               <span className="block mb-2" style={{ color: "var(--foreground)" }}>Decovrez nos</span>
               <span 
                 className="relative inline-block uppercase"
@@ -72,12 +62,26 @@ export default function InspiringSection({ events }: { events: any[] }) {
                 Conférences & vidéos
               </span>
               <span></span>
-            </h2>
+            </h2> */}
 
-            <p className="text-base md:text-lg" style={{ color: "var(--muted-foreground)" }}>
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight text-foreground">
+                Découvrez nos <br />
+                <span className="text-primary uppercase">Conférences & vidéos</span>
+              </h2>
+
+            <p 
+            // className="text-base md:text-lg" style={{ color: "var(--muted-foreground)" }}
+            
+            className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl"
+            >
               Explorez une variété de contenus inspirants pour enrichir vos connaissances et 
               développer vos compétences en informatique.
             </p>
+
+            {/* <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
+                Explorez une variété de contenus inspirants pour enrichir vos connaissances et 
+                propulser votre carrière dans le numérique.
+              </p> */}
 
             <ul className="space-y-2">
               {[

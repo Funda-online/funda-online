@@ -136,7 +136,7 @@ export default function ArticlesGrid({ articles }: { articles: any }) {
               className="blog-card group flex flex-col h-full"
               ref={(el: HTMLDivElement | null) => { if (el) cardsRef.current[index] = el; }}
             >
-              <div className="relative bg-white border border-primary/10 rounded-4xl overflow-hidden *shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+              <div className="relative bg-white border border-primary/10 rounded-4xl overflow-hidden transition-all duration-500 flex flex-col h-full">
                 
                 {/* Image avec Overlay & Badge */}
                 <div className="relative h-60 overflow-hidden">
