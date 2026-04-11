@@ -2,7 +2,7 @@ import { defineType } from "sanity";
 
 export default defineType({
   name: "sensibilisation",
-  title: "Sensibilisations Passées",
+  title: "Sensibilisations",
   type: "document",
   fields: [
     { name: "title", title: "Titre de l'activité", type: "string" },
