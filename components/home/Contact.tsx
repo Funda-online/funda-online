@@ -82,7 +82,7 @@ export default function Contact() {
             <h2 className="text-3xl md:text-5xl mb-4 font-bold text-foreground text-center leading-tight">
               Contactez-<span className="text-primary uppercase">nous</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl text-lg text-center leading-relaxed mx-auto md:mx-0">
+            <p className="text-muted-foreground max-w-2xl text-base md:text-lg text-center leading-relaxed mx-auto md:mx-0">
               Une question, un projet ou simplement envie d'échanger ? Notre
               équipe est à votre écoute pour vous accompagner.
             </p>
@@ -186,7 +186,7 @@ export default function Contact() {
                     <h4 className="text-xs font-bold uppercase tracking-widest text-primary/60">
                       {item.title}
                     </h4>
-                    <p className="text-lg *font-bold text-foreground">
+                    <p className="text-base md:text-lg *font-bold text-foreground">
                       {item.value}
                     </p>
                   </div>
