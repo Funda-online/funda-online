@@ -88,10 +88,11 @@ const Hero = () => {
       <div className="container relative z-10 max-w-4xl mx-auto">
         <h1
           ref={headingRef}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2 md:mb-6 text-white"
+          // className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2 md:mb-6 text-white"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-background"
         >
           Apprenez l'informatique{" "}
-          <span className="relative inline-block text-[var(--accent)]">
+          <span className="relative inline-block text-primary">
             <span className="relative z-10">et transformez</span>
             {/* <span
               className="absolute bottom-0 left-0 w-full h-2 bg-[var(--accent)] opacity-40"
@@ -103,7 +104,8 @@ const Hero = () => {
 
         <p
           ref={textRef}
-          className="mt-2 md:mt-4 md:text-lg *md:text-xl max-w-2xl mx-auto text-gray-100"
+          // className="mt-2 md:mt-4 md:text-lg *md:text-xl max-w-2xl mx-auto text-gray-100"
+          className="mt-2 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
         >
           Bienvenue sur Funda, votre plateforme d'apprentissage en informatique.
           Explorez nos ressources, événements et articles pour vous aider à
@@ -118,7 +120,7 @@ const Hero = () => {
         >
           <Link href="/events/past" className="w-full sm:w-auto cursor-pointer">
             <Button
-              size="lg"
+              // size="lg"
               className="*w-full sm:w-auto rounded-full px-8 py-[22.5px] text-base font-semibold border-[1.5px] border-primary transition-all"
               style={{
                 backgroundColor: "var(--primary)",
