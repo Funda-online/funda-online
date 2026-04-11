@@ -50,7 +50,7 @@ export default function NextSensibilisation({ data }: { data: any }) {
         {/* Card au design "Sensibilise" */}
         <div 
           ref={cardRef}
-          className="group relative bg-slate-50 border border-primary/10 rounded-4xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-500"
+          className="group relative border border-primary/10 rounded-4xl overflow-hidden hover:shadow-md transition-all duration-500"
         >
           <div className="flex flex-col lg:flex-row items-stretch">
             
@@ -63,11 +63,11 @@ export default function NextSensibilisation({ data }: { data: any }) {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
-              <div className="absolute top-6 left-6">
-                <Badge className="bg-primary text-white px-4 py-1.5 backdrop-blur-md border-none shadow-lg text-sm font-bold uppercase tracking-wider">
+              {/* <div className="absolute top-6 left-6">
+                <Badge className="bg-white text-primary px-4 py-1.5 backdrop-blur-md border-none shadow-lg text-[10px] font-bold uppercase tracking-wider">
                    {data.category}
                 </Badge>
-              </div>
+              </div> */}
             </div>
 
             {/* Contenu (60% de la largeur) */}
@@ -93,12 +93,12 @@ export default function NextSensibilisation({ data }: { data: any }) {
 
               <div className="pt-4 flex flex-col sm:flex-row gap-4">
                 <Link href={`/sensibilisation/${data.slug}`}>
-                  <Button className="rounded-full px-8 py-6 text-base font-bold flex items-center gap-3">
+                  <Button className="rounded-full w-44 py-6.5 text-sm font-bold flex items-center gap-3">
                     En savoir plus <ArrowRight size={20} />
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button variant="outline" className="rounded-full px-8 py-6 text-base font-bold border-primary text-primary hover:bg-primary/5">
+                  <Button variant="outline" className="rounded-full w-52 py-6 text-sm font-bold border-primary text-primary hover:bg-accent/10 hover:text-primary">
                     Nous inviter chez vous
                   </Button>
                 </Link>
