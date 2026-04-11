@@ -56,8 +56,8 @@ const Hero = () => {
       </div>
 
       {/* Contenu - Toujours centré (text-center & mx-auto) */}
-      <div className="relative z-10 w-full max-w-5xl px-6 py-20 text-center">
-        <div className="hero-content space-y-8 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-5xl  md:px-6 py-20 text-center">
+        <div className="hero-content space-y-4 md:space-y-8 flex flex-col items-center">
           {/* Badge Centré */}
           {/* <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/20 *border border-primary/30 backdrop-blur-md text-white text-xs md:text-sm font-bold tracking-widest">
             <span>La Tech à portée de main</span>
@@ -70,7 +70,7 @@ const Hero = () => {
             votre avenir
           </h1>
 
-          <p className="text-base md:text-lg text-gray-300 max-w-2xl leading-relaxed font-medium mx-auto">
+          <p className="text-sm md:text-lg px-8 text-gray-300 md:max-w-2xl leading-relaxed font-medium mx-auto">
             Bienvenue sur Funda, votre plateforme d'apprentissage en
             informatique. Explorez nos ressources, événements et articles pour
             vous aider à débuter votre carrière dans le domaine technologique.
