@@ -14,6 +14,7 @@ import {
   Image as ImageIcon 
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { PortableText } from "next-sanity"
 
 // Le composant reçoit maintenant l'objet "data" de Sanity en tant que prop
 export default function SensibilisationDetail({ data }: { data: any }) {
@@ -87,7 +88,8 @@ export default function SensibilisationDetail({ data }: { data: any }) {
                   {data.summary}
                 </p>
                 {/* Contenu riche provenant de Sanity */}
-                <div dangerouslySetInnerHTML={{ __html: data.content }} className="space-y-6" />
+                {/* <div dangerouslySetInnerHTML={{ __html: data.content }} className="space-y-6" /> */}
+                <PortableText value={data.content} />
               </div>
 
               {/* Galerie d'images */}
