@@ -220,7 +220,7 @@ const Navbar = () => {
                         </button>
 
                         {openDropdown === link.label && (
-                          <ul className="mx-4 mb-2 flex flex-col gap-1 border-t border-foreground/20 pt-3">
+                          <ul className="mx-4 mb-2 flex flex-col gap-1 border-t border-primary/15 pt-3">
                             {link.children.map((sublink) => (
                               <li key={sublink.label}>
                                 <Link
@@ -238,7 +238,7 @@ const Navbar = () => {
                     ) : (
                       <Link
                         href={link.href}
-                        className={`block w-full px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                        className={`block w-full px-4 py-3 text-lg font-medium rounded-xl transition-colors ${
                           pathname === link.href
                             ? "bg-primary/10 text-primary"
                             : "text-foreground hover:bg-muted"
