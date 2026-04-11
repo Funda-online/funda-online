@@ -24,7 +24,7 @@ const query = `*[_type == "blog"] | order(date desc) {
 }`;
 
 const nextSensibilisationQuery = `
-  *[_type == "sensibilisation" && date >= now()] | order(date asc)[0]{
+  *[_type == "sensibilisation"] | order(date desc)[0] {
     _id,
     title,
     "slug": slug.current,
@@ -33,6 +33,7 @@ const nextSensibilisationQuery = `
     category,
     summary,
     "mainImageUrl": mainImage.asset->url,
+    "photoCount": count(gallery)
   }
 `;
 
@@ -52,8 +53,9 @@ export default async function Home() {
       {nextSensibilisation && <NextSensibilisation data={nextSensibilisation} />}
 
       <InspiringSectionWrapper />
+      
       <ArticlesGrid articles={articles} />
-      {/* <Newsletter /> */}
+
       <Contact />
     </div>
   );
