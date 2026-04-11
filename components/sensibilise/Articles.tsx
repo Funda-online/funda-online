@@ -76,7 +76,7 @@ export function Articles({ sensibilisation }: { sensibilisation: any[] }) {
           {sensibilisation.map((article) => (
             <Link 
               key={article._id}
-              href={`/sensibilisation/${article.slug}`}
+              href={`/sensibilise/${article.slug}`}
               className="article-card group cursor-pointer flex flex-col bg-white border border-primary/10 rounded-4xl overflow-hidden *shadow-sm hover:shadow-sm transition-all duration-500"
             >
               <div className="relative aspect-video overflow-hidden">
