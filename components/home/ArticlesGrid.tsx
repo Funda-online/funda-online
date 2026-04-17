@@ -205,7 +205,7 @@ export default function ArticlesGrid({ articles }: { articles: any }) {
                   {/* Lire la suite */}
                   <Link
                     href={`/blog/${article.slug.current}`}
-                    className="flex items-center gap-2 text-[var(--primary)] font-medium hover:gap-3 transition-all"
+                    className="flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
                   >
                     <span>Lire l'article</span>
                     <ArrowRight className="w-4 h-4" />
