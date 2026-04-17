@@ -195,6 +195,31 @@ export default function ArticlesGrid({ articles }: { articles: any }) {
                        ))}
                     </div>
                   </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {article.tags.map((tag: any, index: any) => (
+                      <span
+                        key={index}
+                        className="px-2.5 py-1 rounded-full text-xs"
+                        style={{
+                          backgroundColor: "var(--secondary)",
+                          color: "var(--muted-foreground)"
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Lire la suite */}
+                  <Link
+                    href={`/blog/${article.slug.current}`}
+                    className="flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
+                  >
+                    <span>Lire l'article</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </div>
             </article>
