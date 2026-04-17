@@ -7,13 +7,9 @@ import ArticlesGrid from "@/components/home/ArticlesGrid";
 // Make sure the following file exists: <projectRoot>/sanity/client.ts
 import { client } from "../../sanity/lib/client";
 import Contact from "@/components/home/Contact";
+import NextSensibilisation from "@/components/home/NextSensibilisation";
 
-export default async function Home() {
-  const event = await client.fetch(
-    `*[_type == "event"] | order(date asc)[0]`
-  )
-
-  const query = `*[_type == "blog"] | order(date desc) {
+const query = `*[_type == "blog"] | order(date desc) {
   _id,
   title,
   slug,
@@ -25,9 +21,26 @@ export default async function Home() {
   author,
   date,
   readTime
-}`
+}`;
 
-const articles = await client.fetch(query)
+const nextSensibilisationQuery = `
+  *[_type == "sensibilisation"] | order(date desc)[0] {
+    _id,
+    title,
+    "slug": slug.current,
+    location,
+    date,
+    category,
+    summary,
+    "mainImageUrl": mainImage.asset->url,
+    "photoCount": count(gallery)
+  }
+`;
+
+export default async function Home() {
+  const event = await client.fetch(`*[_type == "event"] | order(date asc)[0]`);
+  const articles = await client.fetch(query);
+  const nextSensibilisation = await client.fetch(nextSensibilisationQuery)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,9 +50,12 @@ const articles = await client.fetch(query)
 
       <UpcomingEvent event={event} />
 
-      <InspiringSectionWrapper />
+      {nextSensibilisation && <NextSensibilisation data={nextSensibilisation} />}
+
       <ArticlesGrid articles={articles} />
-      {/* <Newsletter /> */}
+      
+      <InspiringSectionWrapper />
+
       <Contact />
     </div>
   );

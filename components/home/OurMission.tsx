@@ -6,8 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { ArrowRight, Sparkles, Target } from "lucide-react";
 
-// Enregistrer les plugins GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 const OurMission = () => {
@@ -16,147 +16,100 @@ const OurMission = () => {
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Animation au scroll
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 70%",
-        end: "bottom bottom",
-        toggleActions: "play none none none"
-      }
-    });
+    const ctx = gsap.context(() => {
+      // Animation du texte (slide up + fade)
+      gsap.from(textRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
 
-    // tl.fromTo(
-      // textRef.current,
-      // { x: -30, opacity: 0 },
-      // { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
-    // )
-    // .fromTo(
-    //   imageRef.current,
-    //   { x: 30, opacity: 0 },
-    //   { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-    //   "-=0.5"
-    // );
+      // Animation de l'image (scale + fade)
+      gsap.from(imageRef.current, {
+        scale: 0.9,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        },
+      });
+    }, sectionRef);
 
-    return () => {
-      tl.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="*relative container px-4 md:px-16 lg:px-20 mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center py-12 md:py-24 overflow-hidden"
+      className="relative py-20 md:py-32 overflow-hidden bg-white"
     >
-      {/* Fond décoratif */}
-      {/* <div className="absolute -top-20 -right-24 w-64 h-64 rounded-full bg-[var(--accent)] opacity-10 blur-3xl -z-10"></div>
-      <div className="absolute -bottom-20 -left-24 w-64 h-64 rounded-full bg-[var(--primary)] opacity-10 blur-3xl -z-10"></div> */}
+      <div className="container px-4 md:px-16 lg:px-20 mx-auto">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Contenu texte */}
+          <div ref={textRef} className="space-y-8 order-2 md:order-1">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
+                <span>Notre Mission</span>
+              </div>
+              
+              <h2 className="text-3xl md:text-5xl *lg:text-[50px] font-bold leading-[1.1] text-foreground">
+                Donner du pouvoir à la prochaine génération de{" "}
+                <span className="text-primary">leaders technologiques</span>
+              </h2>
+            </div>
 
-      {/* Contenu texte */}
-      <div
-        ref={textRef}
-        className="space-y-4 md:space-y-6"
-      >
-        <h2
-          className="text-3xl md:text-4xl lg:text-[44px] font-bold leading-tight"
-          style={{ color: "var(--foreground)" }}
-        >
-          Donner du pouvoir à la prochaine génération des{' '}
-          <span
-            className="relative inline-block text-3xl *md:text-[32px] uppercase"
-            style={{ color: "var(--primary)" }}
-          >
-            leaders technologiques
-            {/* <span 
-              className="absolute bottom-1 left
-                backgroundColor: "var(--accent)",
-                transform: "skewX(-15deg)"
-              }}
-            ></span> */}
-          </span>
-        </h2>
+            <div className="space-y-2 md:space-y-4">
+              <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+                Chez <span className="">Funda</span>, nous sommes convaincus que l'accès à une formation numérique de qualité est un droit, pas un privilège.
+              </p>
+              <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+                Nous accompagnons les jeunes et les passionnés dans la maîtrise des outils qui façonneront le monde de demain.
+              </p>
+            </div>
 
-        <div className="space-y-4">
-          <p
-            className="md:text-lg leading-relaxed"
-            style={{ color: "var(--muted-foreground)" }}
+            <div className="pt-1">
+              <Link href="/events/upcoming">
+                <Button
+                  variant="outline"
+                  className="rounded-full w-54 py-6.5 text-sm border-primary text-primary font-bold flex items-center gap-3 hover:bg-accent/10 hover:text-primary transition-all"
+                >
+                  Voir les événements
+                  <ArrowRight size={22} />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Contenu image */}
+          <div
+            ref={imageRef}
+            className="relative order-1 md:order-2"
           >
-            Chez Funda, nous pensons que tout le monde mérite d'avoir accès à une
-            formation de qualité.
-          </p>
-          <p
-            className="md:text-lg leading-relaxed"
-            style={{ color: "var(--muted-foreground)" }}
-          >
-            Notre mission est d'accompagner les jeunes, étudiants et passionnés
-            dans leur apprentissage de l'informatique.
-          </p>
+            {/* Décoration arrière-plan */}
+            <div className="absolute -top-6 -right-6 w-full h-full border border-primary/10 rounded-4xl -z-10 hidden md:block" />
+            
+            <div className="relative w-full h-[400px] md:h-[550px] rounded-4xl overflow-hidden shadow-2xl">
+              <Image
+                src="/img/our.jpg"
+                alt="Étudiants en informatique travaillant ensemble"
+                fill
+                className="object-cover transition-transform duration-1000 hover:scale-110"
+                quality={100}
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            </div>
+          </div>
+
         </div>
-
-        {/* <div className="pt-4"> */}
-        {/* <Button 
-          size="lg"
-            className="rounded-full *px-8 py-6 text-base font-semibold border border-primary *uppercase *shadow-lg *hover:shadow-xl transition-all"
-          >
-            Découvrir notre approche
-          </Button> */}
-        <Link href="/events/upcoming" className="cursor-pointer">
-          <Button
-            variant="outline"
-            size="lg"
-            className="rounded-full px-8 py-[22.5px] text-base font-semibold *uppercase border-[1.5px] transition-all *hover:scale-105 bg-transparent text-primary border-primary hover:bg-primary"
-          >
-            Voir les événements
-          </Button>
-        </Link>
-        {/* <button 
-            className="group relative inline-flex items-center px-6 py-3 rounded-full font-medium transition-all"
-            style={{
-              backgroundColor: "var(--primary)",
-              color: "var(--primary-foreground)"
-            }}
-          >
-            <span className="relative z-10">Découvrir notre approche</span>
-            <span 
-              className="absolute right-4 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-              style={{ color: "var(--primary-foreground)" }}
-            >
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </span>
-            <span 
-              className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{ 
-                backgroundColor: "var(--accent)",
-                boxShadow: "0 0 0 2px var(--accent)"
-              }}
-            ></span>
-          </button> */}
-        {/* </div> */}
-      </div>
-
-      {/* Contenu image */}
-      <div
-        ref={imageRef}
-        className="relative w-full h-80 md:h-96 rounded-2xl overflow-hidden *shadow-xl"
-      >
-        {/* Placeholder remplacé par une image réelle */}
-        <div className="absolute inset-0 *bg-gradient-to-br *from-[var(--primary)] *to-[var(--accent)] bg-primary *opacity-20"></div>
-        <Image
-          src="/img/our.jpg"
-          alt="Étudiants en informatique"
-          fill
-          className="object-cover"
-          quality={90}
-        />
-        <div className="absolute inset-0 bg-black/10"></div>
-
-        {/* Élément décoratif */}
-        {/* <div
-          className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full"
-          style={{ backgroundColor: "var(--accent)", opacity: 0.3 }}
-        ></div> */}
       </div>
     </section>
   );

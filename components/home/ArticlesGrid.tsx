@@ -129,110 +129,88 @@ export default function ArticlesGrid({ articles }: { articles: any }) {
         </div>
 
         {/* Grille d'articles */}
-        {/* Grille d'articles */}
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid-container grid md:grid-cols-3 gap-8">
           {articles.slice(-3).map((article: any, index: any) => (
-            <article key={index} className="blog-post group">
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+            <article 
+              key={index} 
+              className="blog-card group flex flex-col h-full"
+              ref={(el: HTMLDivElement | null) => { if (el) cardsRef.current[index] = el; }}
+            >
+              <div className="relative bg-white border border-primary/10 rounded-4xl overflow-hidden transition-all duration-500 flex flex-col h-full">
+                
+                {/* Image avec Overlay & Badge */}
+                <div className="relative h-60 overflow-hidden">
                   <Image
                     src={urlFor(article.image).width(600).height(400).url()}
                     alt={article.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4">
-                    <span
-                      className="px-3 py-1 rounded-full text-xs md:text-[13px] font-medium"
-                      style={{
-                        backgroundColor: "var(--primary)",
-                        color: "var(--primary-foreground)"
-                      }}
-                    >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                  <div className="absolute top-6 left-6">
+                    <span className="px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-primary text-white shadow-lg">
                       {article.category}
                     </span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
 
                 {/* Contenu */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-lg md:text-xl font-semibold mb-3 group-hover:text-[var(--primary)] transition-colors">
-                    <Link href={`/blog/${article.id}`}>
+                <div className="p-8 flex-1 flex flex-col">
+                  {/* Métadonnées style "Funda" */}
+                  <div className="flex items-center justify-between gap-4 text-[11px] font-bold uppercase tracking-widest text-primary mb-4">
+                    <div className="flex items-center gap-1.5">
+                      <Clock size={14} />
+                      {article.readTime}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Calendar size={14} />
+                      {new Date(article.date).toLocaleDateString("fr-FR", { day: 'numeric', month: 'short' })}
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors leading-snug">
+                    <Link href={`/blog/${article.slug.current}`}>
                       {article.title}
                     </Link>
                   </h3>
 
-                  <p className="text-gray-600 text-base mb-4 flex-1" style={{ color: "var(--muted-foreground)" }}>
-                    {article.excerpt.length > 100
-                      ? `${article.excerpt.slice(0, 100)}…`
-                      : article.excerpt}
+                  <p className="text-muted-foreground text-base mb-6 flex-1 line-clamp-3 leading-relaxed">
+                    {article.excerpt}
                   </p>
 
-                  {/* Métadonnées */}
-                  <div className="flex items-center justify-between gap-4 text-sm mb-4" style={{ color: "var(--muted-foreground)" }}>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {article.readTime}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {new Date(article.date).toLocaleDateString("fr-FR", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                  {/* Footer de la card */}
+                  <div className="pt-4 border-t border-border/50 flex items-center justify-between">
+                    <Link
+                      href={`/blog/${article.slug.current}`}
+                      className="flex items-center gap-2 text-primary font-bold text-sm group/link"
+                    >
+                      <span>Lire la suite</span>
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                    </Link>
+                    
+                    {/* Petits tags discrets */}
+                    <div className="flex gap-2">
+                       {article.tags?.slice(0, 1).map((tag: string, i: number) => (
+                         <span key={i} className="text-[10px] text-muted-foreground bg-muted px-2 py-1 rounded-md">#{tag}</span>
+                       ))}
                     </div>
                   </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {article.tags.map((tag: any, index: any) => (
-                      <span
-                        key={index}
-                        className="px-2.5 py-1 rounded-full text-xs"
-                        style={{
-                          backgroundColor: "var(--secondary)",
-                          color: "var(--muted-foreground)"
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Lire la suite */}
-                  <Link
-                    href={`/blog/${article.slug.current}`}
-                    className="flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
-                  >
-                    <span>Lire l'article</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        {/* Bouton "Voir plus" */}
-        <div className="text-center mt-10 md:mt-16">
-          <Link href="/blog" className="w-full sm:w-auto cursor-pointer">
-          <Button
-            size={"lg"}
-            // className="uppercase text-sm rounded-full"
-            className="event-button group rounded-full px-6 py-[22.5px] font-semibold transition-all"
-
-            // className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all hover:gap-3"
-            style={{
-              backgroundColor: "var(--primary)",
-              color: "var(--primary-foreground)"
-            }}
-          >
-            <span>Voir tous les articles</span>
-            {/* <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" /> */}
-          </Button>
+        {/* Bouton Voir tout harmonisé avec tes boutons Mission/Sensibilisation */}
+        <div className="text-center mt-16">
+          <Link href="/blog">
+            <Button
+              variant="outline"
+              className="rounded-full w-60 py-7 text-sm font-bold border-primary bg-transparent text-primary hover:bg-accent/10 hover:text-primary transition-all shadow-sm"
+            >
+              <span>Voir tous les articles</span>
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
           </Link>
         </div>
       </div>
