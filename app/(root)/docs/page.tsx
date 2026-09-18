@@ -54,7 +54,7 @@ const Docs = () => {
           </h1>
           
           <p className="md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Documentation complète pour la gestion des événements, articles et ressources Funda avec Sanity CMS
+            Documentation complète pour la gestion des événements et ressources Funda avec Sanity CMS
           </p>
         </div>
       </section>

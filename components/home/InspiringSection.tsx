@@ -72,9 +72,8 @@ export default function InspiringSection({ events }: { events: any[] }) {
 
             <ul className="space-y-2">
               {[
-                { icon: <PlayCircle className="w-5 h-5 md:w-6 md:h-6" />, text: "Conférences interactives avec experts" },
-                { icon: <Video className="w-5 h-5 md:w-6 md:h-6" />, text: "Vidéos exclusives et tutoriels" },
-                { icon: <Download className="w-5 h-5 md:w-6 md:h-6" />, text: "Ressources téléchargeables" }
+                { icon: <PlayCircle className="w-5 h-5 md:w-6 md:h-6" />, text: "Conférences et Talks interactives" },
+                { icon: <Video className="w-5 h-5 md:w-6 md:h-6" />, text: "Vidéos exclusives " },
               ].map((item, index) => (
                 <li 
                   key={index}

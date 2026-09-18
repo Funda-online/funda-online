@@ -1,8 +1,7 @@
 import { Articles } from "@/components/sensibilise/Articles";
 import Axes  from "@/components/sensibilise/Axes";
-import ContactCTA from "@/components/sensibilise/ContactCTA";
 import Hero  from "@/components/sensibilise/Hero";
-import ModeleIntervention from "@/components/sensibilise/ModeleIntervention";
+// import ModeleIntervention from "@/components/sensibilise/ModeleIntervention";
 import Presentation  from "@/components/sensibilise/Presentation";
 import { client } from "@/sanity/lib/client";
 
@@ -24,11 +23,10 @@ const FundaSensibilisePage = async () => {
   return (
     <div className="py-12 space-y-16">
       <Hero />
-      <Presentation />
+      {/* <Presentation /> */}
       <Axes />
       <Articles sensibilisation={sensibilisation}/>
-      <ModeleIntervention />
-      <ContactCTA />
+      {/* <ModeleIntervention /> */}
     </div>
   );
 }

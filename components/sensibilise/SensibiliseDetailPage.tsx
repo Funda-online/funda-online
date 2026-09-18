@@ -1,16 +1,12 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
-import Link from "next/link"
 import { gsap } from "gsap"
 import { 
-  ArrowLeft, 
   MapPin, 
   Calendar, 
   Share2, 
-  ChevronRight, 
   Image as ImageIcon 
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -18,7 +14,6 @@ import { PortableText } from "next-sanity"
 
 // Le composant reçoit maintenant l'objet "data" de Sanity en tant que prop
 export default function SensibilisationDetail({ data }: { data: any }) {
-  const router = useRouter()
   const pageRef = useRef(null)
   
   useEffect(() => {
@@ -134,18 +129,6 @@ export default function SensibilisationDetail({ data }: { data: any }) {
                       Nous rejoindre
                     </Button>
                   </div>
-                </div>
-
-                <div className="p-8 rounded-[2rem] bg-primary text-white">
-                  <h4 className="font-bold text-lg mb-2">Accueillir Funda ?</h4>
-                  <p className="text-primary-foreground/80 text-sm mb-6">
-                    Vous souhaitez organiser une session de sensibilisation dans votre établissement ?
-                  </p>
-                  <Link href="/contact">
-                    <Button variant="secondary" className="w-full rounded-full text-sm font-bold flex gap-2">
-                      Faire une demande <ChevronRight size={16} />
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </div>

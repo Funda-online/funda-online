@@ -113,8 +113,6 @@ export default function Footer() {
                 { label: "Accueil", href: "/" },
                 { label: "Sensibilise 2026", href: "/sensibilise" },
                 { label: "Événements", href: "/events/upcoming" },
-                { label: "Blog", href: "/blog" },
-                { label: "Contact", href: "/contact" },
               ].map((link, i) => (
                 <li key={i}>
                   <Link
@@ -134,7 +132,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Colonne 3 : Infos de Contact (4 colonnes) */}
+          {/* Colonne 3 : Nous trouver (4 colonnes) */}
           <div className="md:col-span-4 space-y-8">
             <h3 className="text-xl font-bold text-white relative inline-block">
               Nous trouver
@@ -192,7 +190,7 @@ export default function Footer() {
             <p>© {new Date().getFullYear()} Funda. Tous droits réservés.</p>
           </div>
 
-          <div className="flex gap-8">
+          {/* <div className="flex gap-8">
             <Link
               href="/privacy"
               className="text-[11px] font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest"
@@ -205,7 +203,7 @@ export default function Footer() {
             >
               Conditions
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
