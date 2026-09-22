@@ -5,8 +5,8 @@ import InspiringSectionWrapper from "@/components/home/InspiringSectionWrapper";
 import { client } from "../../sanity/lib/client";
 import NextSensibilisation from "@/components/home/NextSensibilisation";
 
-const nextSensibilisationQuery = `
-  *[_type == "sensibilisation"] | order(date desc)[0] {
+const lastSensibilisationQuery = `
+  *[_type == "sensibilisation" && date <= now()] | order(date desc)[0] {
     _id,
     title,
     "slug": slug.current,
@@ -21,7 +21,21 @@ const nextSensibilisationQuery = `
 
 export default async function Home() {
   const event = await client.fetch(`*[_type == "event"] | order(date asc)[0]`);
-  const nextSensibilisation = await client.fetch(nextSensibilisationQuery)
+  const lastSensibilisation =
+    (await client.fetch(lastSensibilisationQuery)) ||
+    (await client.fetch(`
+      *[_type == "sensibilisation"] | order(date desc)[0] {
+        _id,
+        title,
+        "slug": slug.current,
+        location,
+        date,
+        category,
+        summary,
+        "mainImageUrl": mainImage.asset->url,
+        "photoCount": count(gallery)
+      }
+    `))
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -31,7 +45,7 @@ export default async function Home() {
 
       {event?.date && <UpcomingEvent event={event} />}
 
-      {nextSensibilisation && <NextSensibilisation data={nextSensibilisation} />}
+      {lastSensibilisation && <NextSensibilisation data={lastSensibilisation} />}
       
       <InspiringSectionWrapper />
     </div>

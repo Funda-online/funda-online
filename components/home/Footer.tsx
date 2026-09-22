@@ -57,43 +57,51 @@ export default function Footer() {
           <div className="md:col-span-5 space-y-8">
             <Link
               href="/"
-              className="inline-block transition-transform hover:scale-105"
+              className="inline-flex items-center gap-3 transition-transform hover:scale-105"
             >
               <Image
                 src="/logo/logo-3.png"
-                alt="Funda Logo"
+                alt="Logo Funda"
                 width={56}
                 height={56}
                 className="brightness-110"
               />
+              <span className="text-2xl font-bold tracking-[0.18em] text-white">FUNDA</span>
             </Link>
             <p className="text-slate-400 text-lg leading-relaxed max-w-md">
-              Funda accompagne la nouvelle génération d'apprenants en RDC. Nous
-              transformons l'accès au numérique en une opportunité
-              d'émancipation grâce à l'auto-apprentissage et au mentorat.
+              Funda accompagne la nouvelle génération d&apos;apprenants en RDC.
+              Nous transformons l&apos;accès au numérique en une opportunité
+              d&apos;émancipation grâce à l&apos;auto-apprentissage.
             </p>
             <div className="flex gap-3">
               {[
                 {
                   icon: <Facebook size={20} />,
                   href: "https://www.facebook.com/funda.cd",
+                  label: "Facebook",
                 },
                 {
                   icon: <FaWhatsapp size={20} />,
-                  href: "https://whatsapp.com/channel/...",
+                  href: "https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36",
+                  label: "WhatsApp",
                 },
                 {
                   icon: <Youtube size={20} />,
-                  href: "https://youtube.com/...",
+                  href: "https://www.youtube.com/@Fundaonlinecd",
+                  label: "YouTube",
                 },
                 {
                   icon: <Linkedin size={20} />,
-                  href: "https://www.linkedin.com/...",
+                  href: "https://www.linkedin.com/company/fundacd/home/",
+                  label: "LinkedIn",
                 },
-              ].map((social, i) => (
+              ].map((social) => (
                 <a
-                  key={i}
+                  key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
                   className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5  border-white/10 hover:bg-primary hover:border-primary text-white transition-all duration-300"
                 >
                   {social.icon}
@@ -111,8 +119,8 @@ export default function Footer() {
             <ul className="space-y-4">
               {[
                 { label: "Accueil", href: "/" },
-                { label: "Sensibilise 2026", href: "/sensibilise" },
-                { label: "Événements", href: "/events/upcoming" },
+                { label: "Événements", href: "/events" },
+                { label: "Funda Sensibilise", href: "/sensibilise" },
               ].map((link, i) => (
                 <li key={i}>
                   <Link

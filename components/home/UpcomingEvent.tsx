@@ -40,36 +40,33 @@ export default function UpcomingEvent({ event }: { event: any }) {
   return (
     <section ref={sectionRef} className="py-12 md:py-20 bg-muted">
       <div className="container mx-auto px-4 md:px-16 lg:px-20">
-        <div
-          ref={cardRef}
-          className="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
-        >
-          <div className="flex flex-col md:flex-row">
-            {/* Date */}
-            <div
-              className="event-date flex flex-col items-center justify-center rounded-2xl m-6 py-3 px-8 shrink-0"
-              style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
-            >
-              <Calendar className="w-8 h-8 mb-2" />
-              <span className="text-sm font-medium uppercase tracking-wider">{month}</span>
-              <span className="text-4xl font-bold mt-1">{day}</span>
-              <span className="text-sm mt-2">{year}</span>
-            </div>
+          <div
+            ref={cardRef}
+            className="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
+            <div className="flex flex-col lg:flex-row">
+              <div
+                className="event-date flex flex-row lg:flex-col items-center justify-center gap-3 lg:gap-0 rounded-2xl m-4 lg:m-6 py-3 px-6 lg:px-8 shrink-0"
+                style={{ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" }}
+              >
+                <Calendar className="w-6 h-6 lg:w-8 lg:h-8 lg:mb-2" />
+                <span className="text-sm font-medium uppercase tracking-wider">{month}</span>
+                <span className="text-2xl lg:text-4xl font-bold lg:mt-1">{day}</span>
+                <span className="text-sm lg:mt-2">{year}</span>
+              </div>
 
-            {/* Image */}
-            <div className="event-image relative w-full h-[400px] md:min-h-[450px]">
               {event.image && (
-                <Image
-                  src={urlFor(event.image).url()}
-                  alt={event.title}
-                  fill
-                  className="object-cover md:object-contain *md:mt-2"
-                />
+                <div className="event-image relative w-full h-48 sm:h-64 lg:h-auto lg:min-h-[280px] lg:w-2/5 overflow-hidden bg-muted">
+                  <Image
+                    src={urlFor(event.image).url()}
+                    alt={event.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               )}
-            </div>
 
-            {/* Content */}
-            <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+              <div className="flex-1 min-w-0 p-6 md:p-8 flex flex-col justify-center">
               <h3
                 // className="event-title text-xl md:text-2xl font-bold mb-5 md:mb-6"
                 className="event-title text-xl md:text-2xl font-bold text-foreground mb-5 md:mb-6 leading-tight group-hover:text-primary transition-colors"
@@ -104,7 +101,7 @@ export default function UpcomingEvent({ event }: { event: any }) {
                     </Button>
                   </a>
                 )}
-                <Link href={`/events/${event.slug.current}`}>
+                <Link href="/events">
                   <Button variant="outline" className="rounded-full w-full md:w-auto py-6 text-sm font-semibold border bg-transparent text-primary border-primary hover:bg-accent/10 hover:text-primary">
                     Voir les détails
                   </Button>

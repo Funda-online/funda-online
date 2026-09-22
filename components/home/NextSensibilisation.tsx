@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Calendar, ArrowRight, Sparkles } from "lucide-react";
+import { MapPin, Calendar, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "../ui/button";
@@ -38,7 +38,7 @@ export default function NextSensibilisation({ data }: { data: any }) {
         
         <div className="mb-12 space-y-3">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Prochaine <span className="text-primary uppercase">Sensibilisation</span>
+            Funda sensibilise
           </h2>
         </div>
 
@@ -53,13 +53,15 @@ export default function NextSensibilisation({ data }: { data: any }) {
             <div className="flex flex-col lg:flex-row items-stretch">
               
               {/* Image */}
-              <div className="relative lg:w-2/5 min-h-[300px] overflow-hidden">
-                <Image 
-                  src={data.mainImageUrl} 
-                  alt={data.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div className="relative lg:w-2/5 min-h-[220px] sm:min-h-[280px] lg:min-h-[320px] overflow-hidden bg-muted">
+                {data.mainImageUrl && (
+                  <Image 
+                    src={data.mainImageUrl} 
+                    alt={data.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
               </div>
 
@@ -92,7 +94,7 @@ export default function NextSensibilisation({ data }: { data: any }) {
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row gap-4">
-                  <Link href={`/sensibilisation/${data.slug}`}>
+                  <Link href={`/sensibilise/${data.slug}`}>
                     <Button className="rounded-full w-44 py-6.5 text-sm font-bold flex items-center gap-3 transition-all">
                       En savoir plus <ArrowRight size={20} />
                     </Button>
