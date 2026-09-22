@@ -97,6 +97,7 @@ const UpComingEventPage = () => {
   }
 
   const [event, setEvent] = useState<any | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     client
@@ -113,17 +114,18 @@ const UpComingEventPage = () => {
         }`
       )
       .then(setEvent)
+      .finally(() => setIsLoading(false))
   }, [])
 
-  if (!event) {
+  if (isLoading) {
     return <div className="min-h-[80vh] flex items-center justify-center">
     <Loading size={25} color="fill-primary mr-2" />
     <span>Chargement</span>
     </div>
   }
 
-  const dateObj = new Date(event.date)
-  const formattedDate = dateObj.toLocaleDateString("fr-FR", {
+  const dateObj = event?.date ? new Date(event.date) : null
+  const formattedDate = dateObj?.toLocaleDateString("fr-FR", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -160,6 +162,11 @@ const UpComingEventPage = () => {
       <section className="py-12 md:py-20 bg-[var(--muted)]">
         <div className="container mx-auto px-4 md:px-16 lg:px-20 *max-w-5xl">
           <div className="bg-white rounded-2xl shadow-lg p-4 md:p-12">
+            {!event ? (
+              <p className="text-center text-[var(--muted-foreground)] py-12">
+                Aucun événement à venir pour le moment.
+              </p>
+            ) : (
             <div className="grid md:grid-cols-2 gap-10 items-center">
               {/* Image */}
               <div className="relative w-full *h-full rounded-xl overflow-hidden">
@@ -212,6 +219,7 @@ const UpComingEventPage = () => {
                 )}
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
