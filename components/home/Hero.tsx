@@ -72,7 +72,7 @@ const Hero = () => {
 
           <p className="text-sm md:text-lg px-8 text-gray-300 md:max-w-2xl leading-relaxed font-medium mx-auto">
             Bienvenue sur Funda, votre plateforme d'apprentissage en
-            informatique. Explorez nos ressources, événements et articles pour
+            informatique. Explorez nos ressources et événements pour
             vous aider à débuter votre carrière dans le domaine technologique.
           </p>
 

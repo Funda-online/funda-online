@@ -51,9 +51,6 @@ export default function Presentation() {
           
           {/* Colonne Gauche : Le Contexte */}
           <div ref={leftColRef} className="space-y-6">
-            <h2 className="text-primary font-bold tracking-wider uppercase text-sm">
-              Contexte & Justification
-            </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
               Le numérique influence notre quotidien, mais est-il maîtrisé ? 
             </h3>

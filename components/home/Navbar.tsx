@@ -15,7 +15,6 @@ import { usePathname } from "next/navigation"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { FaWhatsapp } from "react-icons/fa6"
-import { TbMenu } from "react-icons/tb"
 
 const links = [
   { label: "Accueil", href: "/" },
@@ -27,8 +26,6 @@ const links = [
     ],
   },
   { label: "Sensibilise", href: "/sensibilise" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
 ]
 
 const Navbar = () => {

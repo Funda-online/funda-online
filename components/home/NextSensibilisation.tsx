@@ -37,10 +37,6 @@ export default function NextSensibilisation({ data }: { data: any }) {
       <div className="container mx-auto px-4 md:px-16 lg:px-20">
         
         <div className="mb-12 space-y-3">
-          <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
-            {/* <Sparkles size={18} /> */}
-            <span>Impact Sur Terrain</span>
-          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Prochaine <span className="text-primary uppercase">Sensibilisation</span>
           </h2>
@@ -99,11 +95,6 @@ export default function NextSensibilisation({ data }: { data: any }) {
                   <Link href={`/sensibilisation/${data.slug}`}>
                     <Button className="rounded-full w-44 py-6.5 text-sm font-bold flex items-center gap-3 transition-all">
                       En savoir plus <ArrowRight size={20} />
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button variant="outline" className="rounded-full w-52 py-6 text-sm font-bold border-primary text-primary hover:bg-accent/10 hover:text-primary transition-all">
-                      Nous inviter chez vous
                     </Button>
                   </Link>
                 </div>

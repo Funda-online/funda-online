@@ -56,10 +56,6 @@ const OurMission = () => {
           {/* Contenu texte */}
           <div ref={textRef} className="space-y-8 order-2 md:order-1">
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
-                <span>Notre Mission</span>
-              </div>
-              
               <h2 className="text-3xl md:text-5xl *lg:text-[50px] font-bold leading-[1.1] text-foreground">
                 Donner du pouvoir à la prochaine génération de{" "}
                 <span className="text-primary">leaders technologiques</span>
