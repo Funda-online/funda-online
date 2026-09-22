@@ -29,7 +29,7 @@ export default async function Home() {
 
       <OurMission />
 
-      <UpcomingEvent event={event} />
+      {event?.date && <UpcomingEvent event={event} />}
 
       {nextSensibilisation && <NextSensibilisation data={nextSensibilisation} />}
       

@@ -15,6 +15,8 @@ export default function UpcomingEvent({ event }: { event: any }) {
   const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    if (!event?.date) return
+
     gsap.from(cardRef.current, {
       opacity: 0,
       y: 50,
@@ -26,7 +28,9 @@ export default function UpcomingEvent({ event }: { event: any }) {
         toggleActions: "play none none none",
       },
     })
-  }, [])
+  }, [event])
+
+  if (!event?.date) return null
 
   const dateObj = new Date(event.date)
   const month = dateObj.toLocaleString("fr-FR", { month: "long" })
