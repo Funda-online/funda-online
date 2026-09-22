@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { ArrowRight, Sparkles, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,7 +49,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div
           className="hero-bg-image absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
-          style={{ backgroundImage: "url('/img/1.webp')" }}
+          style={{ backgroundImage: "url('/img/IMG_7268.JPG')" }}
         />
         {/* Overlay progressif pour la lisibilité */}
         <div className="absolute inset-0 bg-black/60 md:bg-black/50" />
@@ -64,39 +64,32 @@ const Hero = () => {
           </div> */}
 
           <h1 className="text-4xl md:text-6xl lg:text-[80px] font-bold tracking-tight text-white leading-[1.1] md:leading-[1.05]">
-            Apprenez l'informatique <br />
-            <span className="text-primary uppercase px-3 rounded-md">et transformez</span>{" "}
+            La nouvelle façon
             <br />
-            votre avenir
+            d&apos;apprendre.
           </h1>
 
           <p className="text-sm md:text-lg px-8 text-gray-300 md:max-w-2xl leading-relaxed font-medium mx-auto">
-            Bienvenue sur Funda, votre plateforme d'apprentissage en
-            informatique. Explorez nos ressources et événements pour
-            vous aider à débuter votre carrière dans le domaine technologique.
+            L&apos;internet regorge d&apos;une multitude de ressources et de
+            possibilités pour apprendre de nouvelles compétences.
           </p>
 
-          {/* Boutons CTA Centrés */}
           <div className="flex flex-col sm:flex-row gap-5 pt-6 w-full sm:w-auto">
-            <Link href="/events/upcoming">
+            <Link href="/events">
               <Button
-                // size="lg"
                 className="rounded-full w-54 py-7 text-sm font-semibold"
-                // className="rounded-full w-full sm:w-64 py-8 text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-all hover:scale-105 shadow-xl shadow-primary/25"
               >
                 Voir les événements
                 <ArrowRight size={20} />
               </Button>
             </Link>
 
-            <Link href="/events/past">
+            <Link href="/sensibilise">
               <Button
                 variant="outline"
             className="rounded-full w-50 py-6.5 text-sm font-semibold border-white bg-transparent text-white hover:bg-accent/10 hover:text-primary hover:border-primary transition-all"
-                // className="rounded-full w-full sm:w-64 py-8 text-sm font-bold uppercase tracking-widest border-white text-white hover:bg-white hover:text-black transition-all backdrop-blur-sm"
               >
-                <Play size={20} fill="currentColor" className="mr-1" />
-                Webinaires
+                Funda Sensibilise
               </Button>
             </Link>
           </div>

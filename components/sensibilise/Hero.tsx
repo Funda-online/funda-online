@@ -3,24 +3,16 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-import { Users, GraduationCap, Building2, HeartHandshake } from "lucide-react";
-
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    tl.fromTo(badgeRef.current,
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 0.8 }
-    )
-      .fromTo(titleRef.current,
+    tl.fromTo(titleRef.current,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1 },
-        "-=0.5"
+        { opacity: 1, y: 0, duration: 1 }
       )
       .fromTo(".hero-description",
         { opacity: 0 },
@@ -28,13 +20,6 @@ export default function Hero() {
         "-=0.5"
       );
   }, []);
-
-  const targets = [
-    { icon: <GraduationCap size={24} />, label: "Élèves & Étudiants" },
-    { icon: <Building2 size={24} />, label: "Centres de formation" },
-    { icon: <Users size={24} />, label: "Organisations & ONG" },
-    { icon: <HeartHandshake size={24} />, label: "Institutions sociales" }
-  ];
 
   return (
     <section
@@ -47,13 +32,6 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto max-w-5xl text-center space-y-8">
-
-        {/* Badge d'Impact Social [cite: 19, 21] */}
-        <div
-          ref={badgeRef}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary *border border-primary/20 text-sm font-medium"
-        >
-        </div>
 
         {/* Titre Principal  */}
         <h1

@@ -1,5 +1,6 @@
 import Navbar from "@/components/home/Navbar";
 import Footer from "@/components/home/Footer";
+import TopProgressBar from "@/components/TopProgressBar";
 
 export default function MainLayout({
     children,
@@ -8,6 +9,7 @@ export default function MainLayout({
 }>) {
     return (
         <>
+            <TopProgressBar />
             <Navbar />
             {children}
             <Footer />

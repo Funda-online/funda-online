@@ -21,7 +21,7 @@ const FundaSensibilisePage = async () => {
   const sensibilisation = await client.fetch(query, {}, { cache: "no-store"})
 
   return (
-    <div className="py-12 space-y-16">
+    <div className="py-12">
       <Hero />
       {/* <Presentation /> */}
       <Axes />

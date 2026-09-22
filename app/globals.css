@@ -134,11 +134,56 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .conference-swiper .swiper-pagination-bullet {
+    background: var(--foreground);
+    opacity: 0.25;
+  }
+
+  .conference-swiper .swiper-pagination-bullet-active {
+    background: var(--primary);
+    opacity: 1;
+  }
+
+  .conference-swiper .swiper-button-next,
+  .conference-swiper .swiper-button-prev {
+    color: #fff;
+    width: 2rem;
+    height: 2rem;
+    background: rgb(7 153 186 / 0.85);
+    border-radius: 9999px;
+  }
+
+  .conference-swiper .swiper-button-next {
+    right: 8px;
+  }
+
+  .conference-swiper .swiper-button-prev {
+    left: 8px;
+  }
+
+  .conference-swiper .swiper-button-next::after,
+  .conference-swiper .swiper-button-prev::after {
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 767px) {
+    .conference-swiper .swiper-button-next,
+    .conference-swiper .swiper-button-prev {
+      display: none;
+    }
   }
 }
 
 @theme inline {
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
