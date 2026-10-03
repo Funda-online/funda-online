@@ -1,58 +1,33 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Facebook,
-  Youtube,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  ChevronRight,
-  Send,
-  Globe,
-} from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { FaWhatsapp } from "react-icons/fa6";
+import { Facebook, Youtube, Linkedin, Mail, MapPin, Phone, ChevronRight } from "lucide-react";
+import Reveal from "../motion/Reveal";
+import WhatsAppIcon from "../icons/WhatsAppIcon";
+import { ORGANIZATION } from "@/lib/site";
 
-gsap.registerPlugin(ScrollTrigger);
+const socials = [
+  { icon: <Facebook size={20} />, href: "https://www.facebook.com/funda.cd", label: "Facebook" },
+  { icon: <WhatsAppIcon size={20} />, href: "https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36", label: "WhatsApp" },
+  { icon: <Youtube size={20} />, href: "https://www.youtube.com/@Fundaonlinecd", label: "YouTube" },
+  { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/company/fundacd/", label: "LinkedIn" },
+];
+
+const navigation = [
+  { label: "Accueil", href: "/" },
+  { label: "Événements", href: "/events" },
+  { label: "Funda Sensibilise", href: "/sensibilise" },
+];
 
 export default function Footer() {
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".footer-content > *", {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 85%",
-        },
-      });
-    }, footerRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <footer
-      ref={footerRef}
-      className="relative bg-foreground text-white overflow-hidden"
-    >
+    <footer className="relative bg-foreground text-white overflow-hidden">
       {/* Lueur subtile en arrière-plan pour donner de la profondeur */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-0 left-1/4 w-125 h-125 bg-primary/10 rounded-full blur-[120px] opacity-50" />
       </div>
 
       <div className="container mx-auto px-4 md:px-16 lg:px-20 pt-20 pb-10 relative z-10">
-        <div className="footer-content grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
+        <Reveal stagger={0.1} className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
           {/* Colonne 1 : Brand & Vision (5 colonnes) */}
           <div className="md:col-span-5 space-y-8">
             <Link
@@ -74,28 +49,7 @@ export default function Footer() {
               d&apos;émancipation grâce à l&apos;auto-apprentissage.
             </p>
             <div className="flex gap-3">
-              {[
-                {
-                  icon: <Facebook size={20} />,
-                  href: "https://www.facebook.com/funda.cd",
-                  label: "Facebook",
-                },
-                {
-                  icon: <FaWhatsapp size={20} />,
-                  href: "https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36",
-                  label: "WhatsApp",
-                },
-                {
-                  icon: <Youtube size={20} />,
-                  href: "https://www.youtube.com/@Fundaonlinecd",
-                  label: "YouTube",
-                },
-                {
-                  icon: <Linkedin size={20} />,
-                  href: "https://www.linkedin.com/company/fundacd/home/",
-                  label: "LinkedIn",
-                },
-              ].map((social) => (
+              {socials.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
@@ -111,22 +65,16 @@ export default function Footer() {
           </div>
 
           {/* Colonne 2 : Navigation Rapide (3 colonnes) */}
-          <div className="md:col-span-3 space-y-8">
+          <nav aria-label="Navigation du pied de page" className="md:col-span-3 space-y-8">
             <h3 className="text-xl font-bold text-white relative inline-block">
               Navigation
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-primary rounded-full"></span>
             </h3>
             <ul className="space-y-4">
-              {[
-                { label: "Accueil", href: "/" },
-                { label: "Événements", href: "/events" },
-                { label: "Funda Sensibilise", href: "/sensibilise" },
-              ].map((link, i) => (
-                <li key={i}>
+              {navigation.map((link) => (
+                <li key={link.href}>
                   <Link
                     href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group flex items-center gap-2 text-slate-400 hover:text-primary transition-colors"
                   >
                     <ChevronRight
@@ -138,7 +86,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Colonne 3 : Nous trouver (4 colonnes) */}
           <div className="md:col-span-4 space-y-8">
@@ -146,7 +94,7 @@ export default function Footer() {
               Nous trouver
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-primary rounded-full"></span>
             </h3>
-            <div className="space-y-6">
+            <address className="not-italic space-y-6">
               <div className="flex items-start gap-4 group">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
                   <MapPin
@@ -155,8 +103,8 @@ export default function Footer() {
                   />
                 </div>
                 <p className="text-slate-400 leading-relaxed group-hover:text-slate-200">
-                  15, chaussée de Kasenga, Bel air,
-                  <br /> Lubumbashi, Haut-Katanga, RDC
+                  {ORGANIZATION.address.street},
+                  <br /> {ORGANIZATION.address.city}, {ORGANIZATION.address.region}, RDC
                 </p>
               </div>
               <div className="flex items-center gap-4 group">
@@ -167,10 +115,10 @@ export default function Footer() {
                   />
                 </div>
                 <a
-                  href="mailto:info@funda-online.com"
+                  href={`mailto:${ORGANIZATION.email}`}
                   className="text-slate-400 group-hover:text-slate-200 transition-colors"
                 >
-                  info@funda-online.com
+                  {ORGANIZATION.email}
                 </a>
               </div>
               <div className="flex items-center gap-4 group">
@@ -181,37 +129,21 @@ export default function Footer() {
                   />
                 </div>
                 <a
-                  href="tel:+243973900363"
+                  href={`tel:${ORGANIZATION.phone}`}
                   className="text-slate-400 group-hover:text-slate-200 transition-colors"
                 >
                   +243 973 900 363
                 </a>
               </div>
-            </div>
+            </address>
           </div>
-        </div>
+        </Reveal>
 
         {/* Divider & Bottom */}
         <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2 text-slate-500 text-sm">
-            {/* <Globe size={14} /> */}
-            <p>© {new Date().getFullYear()} Funda. Tous droits réservés.</p>
-          </div>
-
-          {/* <div className="flex gap-8">
-            <Link
-              href="/privacy"
-              className="text-[11px] font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest"
-            >
-              Confidentialite
-            </Link>
-            <Link
-              href="/terms"
-              className="text-[11px] font-medium text-slate-500 hover:text-white transition-colors uppercase tracking-widest"
-            >
-              Conditions
-            </Link>
-          </div> */}
+          <p className="text-slate-500 text-sm">
+            © {new Date().getFullYear()} Funda. Tous droits réservés.
+          </p>
         </div>
       </div>
     </footer>

@@ -6,7 +6,7 @@ import { Button } from "../ui/button"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
-import { FaWhatsapp } from "react-icons/fa6"
+import WhatsAppIcon from "../icons/WhatsAppIcon"
 
 const links = [
   { label: "Accueil", href: "/" },
@@ -44,7 +44,7 @@ const Navbar = () => {
     }
 
     handleScroll()
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -95,26 +95,29 @@ const Navbar = () => {
           </nav>
 
           <div className="flex flex-row items-center gap-0.5">
-            <a
-              href="https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full px-1 w-34 md:w-38 md:flex py-7 text-sm font-semibold transition-all"
             >
-              <Button
-                size="lg"
-                className="rounded-full px-1 w-34 md:w-38 md:flex py-7 text-sm font-semibold transition-all"
+              <a
+                href="https://whatsapp.com/channel/0029Vaq7xx82Jl8IT3kiwg36"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Rejoindre la chaîne WhatsApp Funda"
               >
-                <FaWhatsapp size={24} />
+                <WhatsAppIcon size={24} />
                 <span>Rejoindre</span>
-              </Button>
-            </a>
+              </a>
+            </Button>
 
             <div className="flex md:hidden items-center justify-between">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="p-2 rounded-lg hover:bg-muted transition-colors"
-                aria-label="Menu"
+                aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                 aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -134,6 +137,7 @@ const Navbar = () => {
           />
 
           <div
+            id="mobile-menu"
             className="md:hidden fixed left-0 right-0 transition-transform duration-300 ease-out"
             style={{
               top: `${headerHeight}px`,

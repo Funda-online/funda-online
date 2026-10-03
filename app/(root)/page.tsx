@@ -1,41 +1,43 @@
+import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import OurMission from "@/components/home/OurMission";
 import UpcomingEvent from "@/components/home/UpcomingEvent";
-import InspiringSectionWrapper from "@/components/home/InspiringSectionWrapper";
-import { client } from "../../sanity/lib/client";
+import InspiringSection from "@/components/home/InspiringSection";
 import NextSensibilisation from "@/components/home/NextSensibilisation";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import {
+  latestPastEventsQuery,
+  latestSensibilisationQuery,
+  nextEventQuery,
+} from "@/sanity/queries";
+import type { PastEventSlide, SensibilisationCard, UpcomingEvent as UpcomingEventData } from "@/sanity/types";
 
-const lastSensibilisationQuery = `
-  *[_type == "sensibilisation" && date <= now()] | order(date desc)[0] {
-    _id,
-    title,
-    "slug": slug.current,
-    location,
-    date,
-    category,
-    summary,
-    "mainImageUrl": mainImage.asset->url,
-    "photoCount": count(gallery)
-  }
-`;
+export const metadata: Metadata = {
+  title: { absolute: `${SITE_NAME} | ${SITE_TAGLINE}` },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} | ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+};
 
 export default async function Home() {
-  const event = await client.fetch(`*[_type == "event"] | order(date asc)[0]`);
-  const lastSensibilisation =
-    (await client.fetch(lastSensibilisationQuery)) ||
-    (await client.fetch(`
-      *[_type == "sensibilisation"] | order(date desc)[0] {
-        _id,
-        title,
-        "slug": slug.current,
-        location,
-        date,
-        category,
-        summary,
-        "mainImageUrl": mainImage.asset->url,
-        "photoCount": count(gallery)
-      }
-    `))
+  const [event, lastSensibilisation, pastEvents] = await Promise.all([
+    sanityFetch<UpcomingEventData | null>({ query: nextEventQuery, tags: ["event"] }),
+    sanityFetch<SensibilisationCard | null>({
+      query: latestSensibilisationQuery,
+      tags: ["sensibilisation"],
+    }),
+    sanityFetch<PastEventSlide[]>({ query: latestPastEventsQuery, tags: ["pastEvent"] }),
+  ]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -43,11 +45,11 @@ export default async function Home() {
 
       <OurMission />
 
-      {event?.date && <UpcomingEvent event={event} />}
+      {event && <UpcomingEvent event={event} />}
 
       {lastSensibilisation && <NextSensibilisation data={lastSensibilisation} />}
-      
-      <InspiringSectionWrapper />
+
+      <InspiringSection events={pastEvents ?? []} />
     </div>
   );
 }
