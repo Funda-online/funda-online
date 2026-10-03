@@ -6,5 +6,8 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  // Les pages sont mises en cache par Next (ISR) et invalidées par webhook :
+  // on interroge l'API directement pour toujours régénérer avec le contenu publié.
+  useCdn: false,
+  perspective: 'published',
 })

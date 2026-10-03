@@ -1,41 +1,15 @@
-"use client";
-
-import { useRef, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Calendar, ArrowRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "../ui/button";
+import Reveal from "../motion/Reveal";
+import SanityImage from "../SanityImage";
+import { formatDate } from "@/lib/date";
+import type { SensibilisationCard } from "@/sanity/types";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function NextSensibilisation({ data }: { data: any }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(cardRef.current, {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+export default function NextSensibilisation({ data }: { data: SensibilisationCard }) {
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-white overflow-hidden">
+    <section className="py-16 md:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 md:px-16 lg:px-20">
-        
         <div className="mb-12 space-y-3">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Funda sensibilise
@@ -43,66 +17,66 @@ export default function NextSensibilisation({ data }: { data: any }) {
         </div>
 
         <div className="relative max-w-6xl mx-auto">
-          {/* Décoration arrière-plan identique à la section Mission */}
           <div className="absolute -top-6 -right-6 w-full h-full border border-primary/10 rounded-4xl -z-10 hidden md:block" />
-          
-          <div 
-            ref={cardRef}
-            className="group relative bg-white border border-primary/10 rounded-4xl overflow-hidden *shadow-sm hover:shadow-md transition-all duration-500"
+
+          <Reveal
+            y={60}
+            className="group relative bg-white border border-primary/10 rounded-4xl overflow-hidden hover:shadow-md transition-all duration-500"
           >
             <div className="flex flex-col lg:flex-row items-stretch">
-              
-              {/* Image */}
               <div className="relative lg:w-2/5 min-h-[220px] sm:min-h-[280px] lg:min-h-[320px] overflow-hidden bg-muted">
                 {data.mainImageUrl && (
-                  <Image 
-                    src={data.mainImageUrl} 
+                  <SanityImage
+                    src={data.mainImageUrl}
                     alt={data.title}
                     fill
+                    sizes="(min-width: 1024px) 40vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 )}
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
               </div>
 
-              {/* Contenu */}
               <div className="p-8 md:p-12 lg:w-3/5 flex flex-col justify-center space-y-6">
                 <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-sm font-bold uppercase tracking-widest text-primary">
-                  {/* Utilisation des nouveaux badges bg-primary/10 */}
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <MapPin size={18} />
+                  {data.location && (
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 bg-primary/10 rounded-lg">
+                        <MapPin size={18} aria-hidden="true" />
+                      </div>
+                      <span className="text-muted-foreground">{data.location}</span>
                     </div>
-                    <span className="text-muted-foreground">{data.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Calendar size={18} />
+                  )}
+                  {data.date && (
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 bg-primary/10 rounded-lg">
+                        <Calendar size={18} aria-hidden="true" />
+                      </div>
+                      <span className="text-muted-foreground">{formatDate(data.date)}</span>
                     </div>
-                    <span className="text-muted-foreground">
-                      {new Date(data.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    </span>
-                  </div>
+                  )}
                 </div>
 
-                <h3 className="text-2xl md:text-4xl font-bold text-foreground leading-tight *group-hover:text-primary transition-colors">
+                <h3 className="text-2xl md:text-4xl font-bold text-foreground leading-tight">
                   {data.title}
                 </h3>
 
-                <p className="text-muted-foreground text-lg leading-relaxed line-clamp-3">
-                  {data.summary}
-                </p>
+                {data.summary && (
+                  <p className="text-muted-foreground text-lg leading-relaxed line-clamp-3">
+                    {data.summary}
+                  </p>
+                )}
 
                 <div className="pt-4 flex flex-col sm:flex-row gap-4">
-                  <Link href={`/sensibilise/${data.slug}`}>
-                    <Button className="rounded-full w-44 py-6.5 text-sm font-bold flex items-center gap-3 transition-all">
+                  <Button asChild className="rounded-full w-44 py-6.5 text-sm font-bold flex items-center gap-3 transition-all">
+                    <Link href={`/sensibilise/${data.slug}`}>
                       En savoir plus <ArrowRight size={20} />
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

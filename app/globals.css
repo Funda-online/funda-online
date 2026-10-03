@@ -1,9 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -168,10 +165,9 @@
     left: 8px;
   }
 
-  .conference-swiper .swiper-button-next::after,
-  .conference-swiper .swiper-button-prev::after {
-    font-size: 0.85rem;
-    font-weight: 700;
+  .conference-swiper .swiper-navigation-icon {
+    width: 0.5rem;
+    height: auto;
   }
 
   @media (max-width: 767px) {
