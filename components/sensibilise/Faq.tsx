@@ -19,7 +19,7 @@ export const SENSIBILISE_FAQ = [
   },
   {
     question: "Comment organiser une sensibilisation dans mon école ou ma communauté ?",
-    answer: `Contactez l'équipe Funda par e-mail à ${ORGANIZATION.email} ou par téléphone au +243 973 900 363.`,
+    answer: `Contactez l'équipe Funda par e-mail à ${ORGANIZATION.email} ou par téléphone au +243 983 886 5862.`,
   },
   {
     question: "Comment être informé des prochaines activités Funda ?",
