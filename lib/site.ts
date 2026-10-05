@@ -23,8 +23,8 @@ export const SITE_KEYWORDS = [
 
 export const ORGANIZATION = {
   name: SITE_NAME,
-  email: "info@funda-online.com",
-  phone: "+243973900363",
+  email: "info@funda-tech.com",
+  phone: "+243838865862",
   address: {
     street: "15, chaussée de Kasenga, Bel air",
     city: "Lubumbashi",
