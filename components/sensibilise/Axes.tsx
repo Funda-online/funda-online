@@ -9,12 +9,12 @@ const axes = [
   },
   {
     title: "Cybersécurité",
-    desc: "Protection des données, gestion des mots de passe et réflexes face aux cybermenaces (désinformation, phishing) pour naviguer en toute sérénité.",
+    desc: "Protection des données, gestion des mots de passe et réflexes face aux cybermenaces (désinformation, phishing)",
     icon: ShieldCheck,
   },
   {
     title: "Auto-apprentissage",
-    desc: "Devenir acteur de son futur : exploiter les cours en ligne, obtenir des certifications et maîtriser l'ingénierie de prompt pour optimiser son temps.",
+    desc: "Apprendre à se former seul et efficacement : trouver les bons cours en ligne, obtenir des certifications reconnues et utiliser l’IA (ingénierie de prompt) pour apprendre plus vite et gagner du temps.",
     icon: Rocket,
   },
 ];

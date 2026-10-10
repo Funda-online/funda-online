@@ -23,6 +23,7 @@ export const SITE_KEYWORDS = [
 
 export const ORGANIZATION = {
   name: SITE_NAME,
+  sensibilise_email : "sensibilise@funda-tech.com",
   email: "info@funda-tech.com",
   phone: "+243838865862",
   address: {

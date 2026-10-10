@@ -178,6 +178,26 @@
   }
 }
 
+/* Échelle typographique resserrée (lisibilité / accessibilité) :
+   les titres sont réduits, le texte courant reste ≥ 16px, en rem pour
+   respecter la taille de police choisie par l'utilisateur. */
+@theme {
+  --text-xl: 1.1875rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.375rem;
+  --text-2xl--line-height: 1.4;
+  --text-3xl: 1.625rem;
+  --text-3xl--line-height: 1.3;
+  --text-4xl: 1.875rem;
+  --text-4xl--line-height: 1.25;
+  --text-5xl: 2.25rem;
+  --text-5xl--line-height: 1.2;
+  --text-6xl: 2.75rem;
+  --text-6xl--line-height: 1.15;
+  --text-7xl: 3.25rem;
+  --text-7xl--line-height: 1.1;
+}
+
 @theme inline {
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
