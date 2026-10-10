@@ -132,7 +132,7 @@ export default function Footer() {
                   href={`tel:${ORGANIZATION.phone}`}
                   className="text-slate-400 group-hover:text-slate-200 transition-colors"
                 >
-                  +243 973 900 363
+                  +243 83 886 5862
                 </a>
               </div>
             </address>

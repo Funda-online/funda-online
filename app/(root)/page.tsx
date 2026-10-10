@@ -13,6 +13,13 @@ import {
 } from "@/sanity/queries";
 import type { PastEventSlide, SensibilisationCard, UpcomingEvent as UpcomingEventData } from "@/sanity/types";
 
+const heroOgImage = {
+  url: "/img/hero.jpg",
+  width: 1920,
+  height: 1280,
+  alt: "Jeunes participants à une activité Funda à Lubumbashi",
+};
+
 export const metadata: Metadata = {
   title: { absolute: `${SITE_NAME} | ${SITE_TAGLINE}` },
   description: SITE_DESCRIPTION,
@@ -21,11 +28,13 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     url: "/",
+    images: [heroOgImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
+    images: [heroOgImage.url],
   },
 };
 

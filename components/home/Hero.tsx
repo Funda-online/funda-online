@@ -30,7 +30,7 @@ const Hero = () => {
           duration={1.2}
           className="space-y-4 md:space-y-8 flex flex-col items-center"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-[80px] font-bold tracking-tight text-white leading-[1.1] md:leading-[1.05]">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1] md:leading-[1.05]">
             La nouvelle façon
             <br />
             d&apos;apprendre.
